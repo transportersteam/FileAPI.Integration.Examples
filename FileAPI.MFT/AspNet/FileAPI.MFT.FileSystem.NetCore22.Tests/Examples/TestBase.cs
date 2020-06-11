@@ -1,4 +1,5 @@
 ﻿using Ftaas.Sdk.FileSystem;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
@@ -8,22 +9,27 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Tests.Examples
 {
     public class TestBase
     {
-        public IService FileSystem { get; set; }
+        protected IService FileSystem { get; }
 
-        public string TenantId { get; set; }
+        protected readonly string UploadDirectory = Path.Combine(Environment.CurrentDirectory, @"Examples\Files\Upload");
 
-        public readonly string UploadDirectory = Path.Combine(Environment.CurrentDirectory, @"Examples\Files\Upload");
+        protected static ITestOutputHelper Output;
 
-        public static ITestOutputHelper Output;
+        protected IConfigurationRoot Config { get; }
 
-        public TestBase()
+        public TestBase(ITestOutputHelper output)
         {
-            //// This is only used to show messages in the tests (internal purpose).
-            //Output = output;
+            // This is used to show messages in the tests (internal purpose only).
+            Output = output;
 
-            var services = new ServiceCollection();
+            // ToDo What the fuck, dude? Why it is not working?
+            //var bar = new ConfigurationBuilder()
+            //    .SetBasePath(Directory.GetCurrentDirectory())
+            //    .AddYamlFile("config.yml")
+            //    .Build();
 
             // Inject the FileSystem.SDK service.
+            var services = new ServiceCollection();
             services.AddFileSystemService(
                 options =>
                 {
@@ -37,12 +43,9 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Tests.Examples
                     return await TokenProvider.GenerateAsync();
                 });
 
+            // Get the FileSystem.SDK service.
             var serviceProvider = services.BuildServiceProvider();
             FileSystem = serviceProvider.GetRequiredService<IService>();
-
-            // Only necessary for multi-tenant token.
-            //var tenantId = "MyTenantId");
-            TenantId = "6401970";
         }
     }
 }
