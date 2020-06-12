@@ -18,7 +18,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             // To upload a file you need to provide the path of the file and the BusinessType where it's going to be uploaded.
             // Also, if you have a multitenant-token, the tenantId needs to be provided.
 
-            Output.WriteTittle("Executing example: Upload one file");
+            Output.WriteTittle("Executing FileSystem.SDK example: Upload one file");
 
             // Configure the file that is going to be uploaded.
             //var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
@@ -45,7 +45,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
         {
             // As the call is asynchronous, it is possible to do several calls in parallel.
 
-            Output.WriteTittle("Executing example: Upload two files in parallel");
+            Output.WriteTittle("Executing FileSystem.SDK example: Upload two files in parallel");
 
             // Configure the files that are going to be uploaded.
             //var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
