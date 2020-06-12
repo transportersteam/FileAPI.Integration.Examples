@@ -138,5 +138,34 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             Output.WriteLine($"Downloaded files that were uploaded between {lowerDate} and {higherDate}:");
             Output.WriteJson(listResult);
         }
+
+        [Fact]
+        public async Task ListFilesSortedByUploadDate()
+        {
+            // For the sake of readability, in this test instead of retreiving all files, we will just retrieve some of them.
+            // It's possible to sort by upload date, status and business type.
+            // For a better understanding of the sorting, please review this link:
+            // https://community.raet.com/developers/w/mft-api/2015/list-available-files
+
+            Output.WriteTittle("Executing FileSystem.SDK example: List files sorted by the upload date");
+
+            // Configure the list.
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var pagination = new Pagination
+            {
+                PageIndex = 0,
+                PageSize = 3
+            };
+
+            // Sorting. It will sort the files by upload date, ascending.
+            var orderby = $"UploadDate asc";
+
+            // List the files.
+            var listResult = await FileSystem.GetAvailableFilesAsync(pagination, orderBy: orderby, tenantId: tenantId);
+
+            // Print the result.
+            Output.WriteLine($"Available files sorted by upload date, ascending:");
+            Output.WriteJson(listResult);
+        }
     }
 }
