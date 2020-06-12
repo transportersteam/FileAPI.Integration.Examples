@@ -31,10 +31,10 @@ namespace FileAPI.MFT.FileSystem.NetCore22
                 BusinessTypeId = 0 // Use the desired businessType.
             };
 
-            // Upload the file
+            // Upload the file.
             var uploadResult = await FileSystem.UploadFileAsync(request, filePath, tenantId: tenantId);
 
-            // Print the result
+            // Print the result.
             Output.WriteLine("File was uploaded:");
             Output.WriteJson(uploadResult);
         }
@@ -65,7 +65,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
                 BusinessTypeId = 0 // Use the desired businessType.
             };
 
-            // Upload the files
+            // Upload the files.
             var uploadTasks = new List<Task<FileUploadInfo>>
             {
                 FileSystem.UploadFileAsync(bigFileRequest, bigFilePath, tenantId: tenantId),
