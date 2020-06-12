@@ -29,11 +29,5 @@ function GetFileApiFileSystemService{
 	Write-Host $token -ForegroundColor White
 	Write-Host ""
 
-	return $fileSystemService
- 
+	return $fileSystemService 
 }
-
-
-
-
-
