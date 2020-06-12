@@ -8,9 +8,9 @@ using Xunit.Abstractions;
 
 namespace FileAPI.MFT.FileSystem.NetCore22
 {
-    public class UploadTests : TestBase
+    public class UploadExamples : ExamplesBase
     {
-        public UploadTests(ITestOutputHelper output) : base(output) { }
+        public UploadExamples(ITestOutputHelper output) : base(output) { }
 
         [Fact]
         public async Task UploadOneFile()
