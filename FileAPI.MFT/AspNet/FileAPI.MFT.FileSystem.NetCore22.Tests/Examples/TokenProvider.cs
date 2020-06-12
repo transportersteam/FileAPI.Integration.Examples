@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace FileAPI.MFT.FileSystem.NetCore22.Tests.Examples
+namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 {
     public static class TokenProvider
     {

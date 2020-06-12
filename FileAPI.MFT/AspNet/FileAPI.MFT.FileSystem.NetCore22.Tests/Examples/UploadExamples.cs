@@ -1,3 +1,4 @@
+using FileAPI.MFT.Utils;
 using Ftaas.Sdk.Base;
 using System.Collections.Generic;
 using System.IO;
@@ -5,7 +6,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.FileSystem.NetCore22.Tests.Examples
+namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 {
     public class UploadTests : TestBase
     {

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.FileSystem.NetCore22.Tests
+namespace FileAPI.MFT.Utils
 {
     public static class ITestOutputHelperExtensions
     {

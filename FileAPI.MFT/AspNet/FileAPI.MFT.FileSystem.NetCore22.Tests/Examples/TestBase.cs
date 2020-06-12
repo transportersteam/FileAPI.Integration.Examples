@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.FileSystem.NetCore22.Tests.Examples
+namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 {
     public class TestBase
     {
