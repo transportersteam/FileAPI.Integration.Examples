@@ -16,7 +16,7 @@ Powershell scripts provide examples for listing, downloading and uploading files
 
 ### Importing libraries
 
-The powershell script Import.ps1 imports the required libraries.
+The powershell script **Import.ps1** imports the required libraries.
 
 ```powershell
 ## Imports 
@@ -36,7 +36,7 @@ Write-Host ""
 
 ### Get service module
 
-The powershell module GetService.psm1 creates a returns a file system service instance. 
+The powershell module **GetService.psm1** creates a returns a file system service instance. 
 
 ```powershell
 function GetFileApiFileSystemService{
@@ -71,11 +71,11 @@ function GetFileApiFileSystemService{
 
 ### Listing files
 
-The powershell script ListFiles.ps1 lists the available files. Following parameters need to be provided:
+The powershell script **ListFiles.ps1** lists the available files. Following parameters need to be provided:
 
-- $mftServiceBaseAddress: File Api end point (Production end point: https://api.raet.com/mft/v1.0/)
-- $token: Jwt token (needs to be obtained using client id and client secret from Identity Api).
-- $tenantId: Tenant id the files belong (is optional)
+- **$mftServiceBaseAddress**: File Api end point (Production end point: https://api.raet.com/mft/v1.0/)
+- **$token**: Jwt token (needs to be obtained using client id and client secret from Identity Api).
+- **$tenantId**: Tenant id the files belong (is optional)
 
 ```powershell
 ## Imports 
@@ -97,13 +97,13 @@ $fileSystemService.GetAvailableFilesAsync($tenantId).GetAwaiter().GetResult() | 
 
 ### Downloading a file
 
-The powershell script DownloadFile.ps1 downloads the file specified by file id. Following parameters need to be provided:
+The powershell script **DownloadFile.ps1** downloads the file specified by file id. Following parameters need to be provided:
 
-- $mftServiceBaseAddress: File Api end point (Production end point: https://api.raet.com/mft/v1.0/)
-- $token: Jwt token (needs to be obtained using client id and client secret from Identity Api).
-- $tenantId: Tenant id the files belong (is optional).
-- $fileId: Identifier of the file.
-- $filePath: Full file name describing where the file will be downloaded (ex: c:\files\myFile.txt)
+- **$mftServiceBaseAddress**: File Api end point (Production end point: https://api.raet.com/mft/v1.0/)
+- **$token**: Jwt token (needs to be obtained using client id and client secret from Identity Api).
+- **$tenantId**: Tenant id the files belong (is optional).
+- **$fileId**: Identifier of the file.
+- **$filePath**: Full file name describing where the file will be downloaded (ex: c:\files\myFile.txt)
 
 ```powershell
 ## Imports 
@@ -131,13 +131,13 @@ $fileSystemService.DownloadFileAsync($fileId,$filePath,$tenantId)
 
 ### Uploading a file
 
-The powershell script UploadFile.ps1 uploads a file to File Api. Following parameters need to be provided:
+The powershell script **UploadFile.ps1** uploads a file to File Api. Following parameters need to be provided:
 
-- $mftServiceBaseAddress: File Api end point (Production end point: https://api.raet.com/mft/v1.0/)
-- $token: Jwt token (needs to be obtained using client id and client secret from Identity Api).
-- $tenantId: Tenant id the files belong (is optional).
-- $businessTypeId: Associated business type id of the file..
-- $filePath: Full file name describing where the file will be downloaded (ex: c:\files\myFile.txt)
+- **$mftServiceBaseAddress**: File Api end point (Production end point: https://api.raet.com/mft/v1.0/)
+- **$token**: Jwt token (needs to be obtained using client id and client secret from Identity Api).
+- **$tenantId**: Tenant id the files belong (is optional).
+- **$businessTypeId**: Associated business type id of the file..
+- **$filePath**: Full file name describing where the file will be downloaded (ex: c:\files\myFile.txt)
 
 ```powershell
 ## Imports 
@@ -166,5 +166,5 @@ $fileSystemService.UploadFileAsync($businessTypeId,$filePath,$tenantId) | Conver
 
 ## Authors
 
-Visma - Transporters Team
+**Visma - Transporters Team**
 
