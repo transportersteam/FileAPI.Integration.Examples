@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.FileSystem.NetCore22.Examples
+namespace FileAPI.MFT.FileSystem.NetCore22
 {
     public class UploadTests : TestBase
     {

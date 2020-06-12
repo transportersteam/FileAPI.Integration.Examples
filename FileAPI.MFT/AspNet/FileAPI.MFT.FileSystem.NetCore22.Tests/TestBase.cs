@@ -5,13 +5,13 @@ using System;
 using System.IO;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.FileSystem.NetCore22.Examples
+namespace FileAPI.MFT.FileSystem.NetCore22
 {
     public class TestBase
     {
         protected IService FileSystem { get; }
 
-        protected readonly string UploadDirectory = Path.Combine(Environment.CurrentDirectory, @"Examples\Files\Upload");
+        protected readonly string UploadDirectory = Path.Combine(Environment.CurrentDirectory, @"Files\Upload");
 
         protected static ITestOutputHelper Output;
 
