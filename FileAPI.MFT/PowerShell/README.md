@@ -157,9 +157,9 @@ Write-Host "File name with path: " -ForegroundColor Yellow -NoNewline
 Write-Host $filePath -ForegroundColor White
 Write-Host "Tenant id (optional): " -ForegroundColor Yellow -NoNewline 
 Write-Host $tenantId -ForegroundColor White
-$options = "https://api.raet.com/mft/v1.0/"
+$mftServiceBaseAddress = "https://api.raet.com/mft/v1.0/"
 $token = "a valid jwt token is required"
-$fileSystemService = GetFileApiFileSystemService $options $token
+$fileSystemService = GetFileApiFileSystemService $mftServiceBaseAddress $token
 $fileSystemService.UploadFileAsync($businessTypeId,$filePath,$tenantId) | ConvertTo-Json
 
 ```
