@@ -18,4 +18,4 @@ Write-Host $tenantId -ForegroundColor White
 $mftServiceBaseAddress = "https://api.raet.com/mft/v1.0/"
 $token = "a valid jwt token is required"
 $fileSystemService = GetFileApiFileSystemService $mftServiceBaseAddress $token
-$fileSystemService.DownloadFileAsync($fileId,$filePath,$tenantId)
+$fileSystemService.DownloadFileAsync($fileId,$filePath,$tenantId).GetAwaiter().GetResult()

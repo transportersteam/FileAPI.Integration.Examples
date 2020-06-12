@@ -24,7 +24,6 @@ Write-Host "Importing libraries..." -ForegroundColor Green
 Import-Module .\libraries\Newtonsoft.Json.dll
 Import-Module .\libraries\Microsoft.Extensions.Logging.Abstractions.dll
 Import-Module .\libraries\Microsoft.Extensions.Logging.dll
-Import-Module .\libraries\Microsoft.Extensions.Http.dll
 Import-Module .\libraries\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 Import-Module .\libraries\Microsoft.Extensions.DependencyInjection.dll
 Import-Module .\libraries\Ftaas.Sdk.Base.dll
@@ -126,7 +125,7 @@ Write-Host $tenantId -ForegroundColor White
 $mftServiceBaseAddress = "https://api.raet.com/mft/v1.0/"
 $token = "a valid jwt token is required"
 $fileSystemService = GetFileApiFileSystemService $mftServiceBaseAddress $token
-$fileSystemService.DownloadFileAsync($fileId,$filePath,$tenantId)
+$fileSystemService.DownloadFileAsync($fileId,$filePath,$tenantId).GetAwaiter().GetResult()
 ```
 
 ### Uploading a file
@@ -160,7 +159,7 @@ Write-Host $tenantId -ForegroundColor White
 $mftServiceBaseAddress = "https://api.raet.com/mft/v1.0/"
 $token = "a valid jwt token is required"
 $fileSystemService = GetFileApiFileSystemService $mftServiceBaseAddress $token
-$fileSystemService.UploadFileAsync($businessTypeId,$filePath,$tenantId) | ConvertTo-Json
+$fileSystemService.UploadFileAsync($businessTypeId,$filePath,$tenantId).GetAwaiter().GetResult() | ConvertTo-Json
 
 ```
 
