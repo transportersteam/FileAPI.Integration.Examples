@@ -26,8 +26,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             Output.WriteTittle("Executing FileSystem.SDK example: List available files with one call");
 
             // Configure the list.
-            //var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
-            var tenantId = "6401970";
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -55,8 +54,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
 
             // Configure the list.
             // Every call will retrieve 20 files.
-            //var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
-            var tenantId = "6401970";
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -89,8 +87,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             Output.WriteTittle("Executing FileSystem.SDK example: List filtered files");
 
             // Configure the list.
-            //var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
-            var tenantId = "6401970";
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -121,8 +118,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             Output.WriteTittle("Executing FileSystem.SDK example: List filtered files");
 
             // Configure the list.
-            //var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
-            var tenantId = "6401970";
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,

@@ -21,15 +21,14 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             Output.WriteTittle("Executing FileSystem.SDK example: Upload one file");
 
             // Configure the file that is going to be uploaded.
-            //var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
-            var tenantId = "6401970";
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
 
             var fileName = "testFile50kb.txt";
             var filePath = Path.Combine(UploadDirectory, fileName);
             var request = new FileUploadRequest
             {
                 Name = "testFile50kb.txt",
-                BusinessTypeId = 8000
+                BusinessTypeId = 0 // Use the desired businessType.
             };
 
             // Upload the file
@@ -48,15 +47,14 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             Output.WriteTittle("Executing FileSystem.SDK example: Upload two files in parallel");
 
             // Configure the files that are going to be uploaded.
-            //var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
-            var tenantId = "6401970";
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
 
             var bigFileName = "testFile10mb.yml";
             var bigFilePath = Path.Combine(UploadDirectory, bigFileName);
             var bigFileRequest = new FileUploadRequest
             {
                 Name = "testFile10mb.yml",
-                BusinessTypeId = 8000
+                BusinessTypeId = 0 // Use the desired businessType.
             };
 
             var smallFileName = "testFile50kb.txt";
@@ -64,7 +62,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             var smallFileRequest = new FileUploadRequest
             {
                 Name = "testFile50kb.txt",
-                BusinessTypeId = 8000
+                BusinessTypeId = 0 // Use the desired businessType.
             };
 
             // Upload the files
