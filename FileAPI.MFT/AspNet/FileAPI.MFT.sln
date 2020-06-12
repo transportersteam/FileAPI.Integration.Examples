@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileAPI.MFT.FileSystem.NetCore22", "FileAPI.MFT.FileSystem.NetCore22.Tests\FileAPI.MFT.FileSystem.NetCore22.csproj", "{D1E8EBA9-38E6-473F-A66D-D15888CD40DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileAPI.MFT.FileSystem.NetCore22", "FileAPI.MFT.FileSystem.NetCore22\FileAPI.MFT.FileSystem.NetCore22.csproj", "{D1E8EBA9-38E6-473F-A66D-D15888CD40DD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileAPI.MFT.Utils", "FileAPI.MFT.Utils\FileAPI.MFT.Utils.csproj", "{1A4422D6-C32B-447B-BDB9-4C8C940D4BA0}"
 EndProject
