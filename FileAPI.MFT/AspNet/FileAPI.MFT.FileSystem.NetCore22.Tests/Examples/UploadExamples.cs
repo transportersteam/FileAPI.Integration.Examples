@@ -37,8 +37,6 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Tests.Examples
             // Print the result
             Output.WriteLine("File was uploaded:");
             Output.WriteJson(uploadResult);
-
-            Output.WriteEnd();
         }
 
         [Fact]
@@ -87,8 +85,6 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Tests.Examples
 
             Output.WriteLine("Second uploaded file:");
             Output.WriteJson(secondUploadedFile.Result);
-
-            Output.WriteEnd();
         }
     }
 }

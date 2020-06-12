@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FileAPI.MFT.Utils\FileAPI.MFT.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Examples\Files\Upload\testFile10mb.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

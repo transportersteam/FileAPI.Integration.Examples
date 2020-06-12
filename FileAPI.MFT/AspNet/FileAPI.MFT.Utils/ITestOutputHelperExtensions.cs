@@ -16,10 +16,5 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Tests
             output.WriteLine(value);
             output.WriteLine("=======================================================");
         }
-
-        public static void WriteEnd(this ITestOutputHelper output)
-        {
-            output.WriteLine("");
-        }
     }
 }
