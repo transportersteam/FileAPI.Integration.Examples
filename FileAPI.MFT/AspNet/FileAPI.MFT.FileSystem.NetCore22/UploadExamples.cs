@@ -18,24 +18,23 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             // To upload a file you need to provide the path of the file and the BusinessType where it's going to be uploaded.
             // Also, if you have a multitenant-token, the tenantId needs to be provided.
 
-            Output.WriteTittle("Executing example: Upload one file");
+            Output.WriteTittle("Executing FileSystem.SDK example: Upload one file");
 
             // Configure the file that is going to be uploaded.
-            //var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
-            var tenantId = "6401970";
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
 
             var fileName = "testFile50kb.txt";
             var filePath = Path.Combine(UploadDirectory, fileName);
             var request = new FileUploadRequest
             {
                 Name = "testFile50kb.txt",
-                BusinessTypeId = 8000
+                BusinessTypeId = 0 // Use the desired businessType.
             };
 
-            // Upload the file
+            // Upload the file.
             var uploadResult = await FileSystem.UploadFileAsync(request, filePath, tenantId: tenantId);
 
-            // Print the result
+            // Print the result.
             Output.WriteLine("File was uploaded:");
             Output.WriteJson(uploadResult);
         }
@@ -45,18 +44,17 @@ namespace FileAPI.MFT.FileSystem.NetCore22
         {
             // As the call is asynchronous, it is possible to do several calls in parallel.
 
-            Output.WriteTittle("Executing example: Upload two files in parallel");
+            Output.WriteTittle("Executing FileSystem.SDK example: Upload two files in parallel");
 
             // Configure the files that are going to be uploaded.
-            //var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
-            var tenantId = "6401970";
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
 
             var bigFileName = "testFile10mb.yml";
             var bigFilePath = Path.Combine(UploadDirectory, bigFileName);
             var bigFileRequest = new FileUploadRequest
             {
                 Name = "testFile10mb.yml",
-                BusinessTypeId = 8000
+                BusinessTypeId = 0 // Use the desired businessType.
             };
 
             var smallFileName = "testFile50kb.txt";
@@ -64,10 +62,10 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             var smallFileRequest = new FileUploadRequest
             {
                 Name = "testFile50kb.txt",
-                BusinessTypeId = 8000
+                BusinessTypeId = 0 // Use the desired businessType.
             };
 
-            // Upload the files
+            // Upload the files.
             var uploadTasks = new List<Task<FileUploadInfo>>
             {
                 FileSystem.UploadFileAsync(bigFileRequest, bigFilePath, tenantId: tenantId),
