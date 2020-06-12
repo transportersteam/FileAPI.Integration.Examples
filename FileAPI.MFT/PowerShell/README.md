@@ -8,7 +8,11 @@ Download PowerShell folder. Required data is commented in the example powershell
 
 ### Prerequisites
 
-Minimim requirement is PowerShell V5.
+Minimim requirement is PowerShell V3. For PowerShell V3 before running the scripts TLS setting must be set by using the following PowerShell script:
+
+```powershell
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 -bor [Net.SecurityProtocolType]::Tls11 -bor [Net.SecurityProtocolType]::Tls
+```
 
 ## Running Examples
 
@@ -91,7 +95,9 @@ Write-Host $tenantId -ForegroundColor White
 $mftServiceBaseAddress = "https://api.raet.com/mft/v1.0/"
 $token = "a valid jwt token is required"
 $fileSystemService = GetFileApiFileSystemService $mftServiceBaseAddress $token
-$fileSystemService.GetAvailableFilesAsync($tenantId).GetAwaiter().GetResult() | ConvertTo-Json
+$pagination = new-object Ftaas.Sdk.Base.Pagination
+$cancellationToken = new-object System.Threading.CancellationToken
+$fileSystemService.GetAvailableFilesAsync($tenantId,$pagination,$cancellationToken).GetAwaiter().GetResult() | ConvertTo-Json
 ```
 
 ### Downloading a file
@@ -125,7 +131,8 @@ Write-Host $tenantId -ForegroundColor White
 $mftServiceBaseAddress = "https://api.raet.com/mft/v1.0/"
 $token = "a valid jwt token is required"
 $fileSystemService = GetFileApiFileSystemService $mftServiceBaseAddress $token
-$fileSystemService.DownloadFileAsync($fileId,$filePath,$tenantId).GetAwaiter().GetResult()
+$cancellationToken = new-object System.Threading.CancellationToken
+$fileSystemService.DownloadFileAsync($fileId,$filePath,$tenantId,$cancellationToken).GetAwaiter().GetResult()
 ```
 
 ### Uploading a file
@@ -159,7 +166,8 @@ Write-Host $tenantId -ForegroundColor White
 $mftServiceBaseAddress = "https://api.raet.com/mft/v1.0/"
 $token = "a valid jwt token is required"
 $fileSystemService = GetFileApiFileSystemService $mftServiceBaseAddress $token
-$fileSystemService.UploadFileAsync($businessTypeId,$filePath,$tenantId).GetAwaiter().GetResult() | ConvertTo-Json
+$cancellationToken = new-object System.Threading.CancellationToken
+$fileSystemService.UploadFileAsync($businessTypeId,$filePath,$tenantId,$cancellationToken).GetAwaiter().GetResult() | ConvertTo-Json
 
 ```
 

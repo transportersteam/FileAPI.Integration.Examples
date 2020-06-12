@@ -12,4 +12,6 @@ Write-Host $tenantId -ForegroundColor White
 $mftServiceBaseAddress = "https://api.raet.com/mft/v1.0/"
 $token = "a valid jwt token is required"
 $fileSystemService = GetFileApiFileSystemService $mftServiceBaseAddress $token
-$fileSystemService.GetAvailableFilesAsync($tenantId).GetAwaiter().GetResult() | ConvertTo-Json
+$pagination = new-object Ftaas.Sdk.Base.Pagination
+$cancellationToken = new-object System.Threading.CancellationToken
+$fileSystemService.GetAvailableFilesAsync($tenantId,$pagination,$cancellationToken).GetAwaiter().GetResult() | ConvertTo-Json
