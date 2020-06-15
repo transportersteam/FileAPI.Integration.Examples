@@ -38,7 +38,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
                 },
                 async (_) =>
                 {
-                    return await TokenProvider.GetAuthorizationTokenAsync();
+                    return await TokenProvider.GetAuthenticationTokenAsync();
                 });
 
             // Get the FileSystem.SDK service.

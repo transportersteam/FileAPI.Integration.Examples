@@ -4,7 +4,7 @@ namespace FileAPI.MFT.Streaming.NetCore22
 {
     public static class TokenProvider
     {
-        public static async Task<string> GetAuthorizationTokenAsync()
+        public static async Task<string> GetAuthenticationTokenAsync()
         {
             // Here comes the logic of retrieving the authorization token.
             // For instance, you could use something similar to what is implemented in RetrieveTokenExamples.cs.
