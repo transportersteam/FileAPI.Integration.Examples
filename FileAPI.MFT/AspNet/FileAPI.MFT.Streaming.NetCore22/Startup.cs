@@ -38,7 +38,10 @@ namespace FileAPI.MFT.Streaming.NetCore22
                 },
                 async (_) =>
                 {
-                    return await TokenProvider.GetAuthenticationTokenAsync();
+                    // Here comes the logic of retrieving the authentaction token.
+                    // This logic is out of the File API scope, but as a guide, you can use something similar
+                    // to what is implemented in Examples/RetrieveToken.cs.
+                    return await Task.FromResult("MyToken");
                 });
 
             // Get the Streaming.SDK service.

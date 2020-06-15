@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Xunit.Abstractions;
 
 namespace FileAPI.MFT.FileSystem.NetCore22
@@ -38,7 +39,10 @@ namespace FileAPI.MFT.FileSystem.NetCore22
                 },
                 async (_) =>
                 {
-                    return await TokenProvider.GetAuthenticationTokenAsync();
+                    // Here comes the logic of retrieving the authentaction token.
+                    // This logic is out of the File API scope, but as a guide, you can use something similar
+                    // to what is implemented in Examples/RetrieveToken.cs.
+                    return await Task.FromResult("MyToken");
                 });
 
             // Get the FileSystem.SDK service.
