@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
+using FileInfo = Ftaas.Sdk.Base.FileInfo;
 
 namespace FileAPI.MFT.Streaming.NetCore22.Examples
 {
@@ -22,12 +23,15 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
-            var fileId = GetRandomUploadedFileId(tenantId);
+            var fileInfo = GetRandomUploadedFile(tenantId);
+            var fileId = fileInfo.FileId.ToString();
 
             using (var ms = new MemoryStream())
             {
                 await Streaming.DownloadFileAsync(fileId, ms, tenantId: tenantId);
-                Output.WriteLine($"File downloaded <{fileId}>.");
+
+                Assert.Equal(fileInfo.FileSize, ms.Length);
+                Output.WriteLine($"File <{fileId}>. Content downloaded.");
             }
         }
 
@@ -40,13 +44,17 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
-            var fileId = GetRandomUploadedFileId(tenantId);
+            var fileInfo = GetRandomUploadedFile(tenantId);
+            var fileId = fileInfo.FileId.ToString();
 
             var filePath = Path.Combine(FilesBaseDirectory, "downloadedFile.txt");
             using (var fs = new FileStream(filePath, FileMode.Create))
             {
                 await Streaming.DownloadFileAsync(fileId, fs, tenantId: tenantId);
-                Output.WriteLine($"File downloaded at {filePath}");
+
+                Assert.Equal(fileInfo.FileSize, fs.Length);
+                Assert.True(File.Exists(filePath), $"File was not downloaded correctly to {filePath}");
+                Output.WriteLine($"File <{fileId}> downloaded at {filePath}");
             }
         }
 
@@ -61,12 +69,17 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
-            var fileIdFirst = GetRandomUploadedFileId(tenantId);
-            var fileIdSecond = GetRandomUploadedFileId(tenantId);
+            var fileInfoFirst = GetRandomUploadedFile(tenantId);
+            var fileIdFirst = fileInfoFirst.FileId.ToString();
+
+            var fileInfoSecond = GetRandomUploadedFile(tenantId);
+            var fileIdSecond = fileInfoSecond.FileId.ToString();
 
             using (var msFirstFile = new MemoryStream())
             using (var msSecondFile = new MemoryStream())
             {
+                Output.WriteLine($"Downloading files <{fileIdFirst}> and <{fileIdSecond}>.");
+
                 var downloadTasks = new List<Task>
                 {
                     Streaming.DownloadFileAsync(fileIdFirst, msFirstFile, tenantId: tenantId),
@@ -77,10 +90,16 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
                 // If you only care about all files being downloaded and not the order, you can use Task.WhenAll instead.
                 var firstDownloadedFile = await Task.WhenAny(downloadTasks);
                 downloadTasks.Remove(firstDownloadedFile);
-                Output.WriteLine($"File Downloaded <{fileIdFirst}>");
+                
+                Assert.True(fileInfoFirst.FileSize == msFirstFile.Length || fileInfoSecond.FileSize == msSecondFile.Length,
+                    "The downloaded stream doesn't contain the uploaded content.");
+                Output.WriteLine($"File <{fileIdFirst}>. Content downloaded.");
 
                 await Task.WhenAny(downloadTasks);
-                Output.WriteLine($"File Downloaded <{fileIdSecond}>");
+
+                Assert.True(fileInfoFirst.FileSize == msFirstFile.Length && fileInfoSecond.FileSize == msSecondFile.Length,
+                     "The downloaded stream doesn't contain the uploaded content.");
+                Output.WriteLine($"File <{fileIdSecond}>. Content downloaded.");
             }
         }
 
@@ -88,18 +107,17 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
         private static readonly Random _random = new Random();
 
-        private string GetRandomUploadedFileId(string tenantId)
+        private FileInfo GetRandomUploadedFile(string tenantId)
         {
             var filter = "Status eq 'All'";
             var randomUploadedFile = Streaming.GetAvailableFilesAsync(filter: filter, tenantId: tenantId).Result.Data;
 
             if (!randomUploadedFile.Any())
                 throw new ArgumentOutOfRangeException(
-                    $"No uploaded file for tenantId: {tenantId}. Please, execute the UploadExamples tests before theses.");
+                    $"No uploaded file for tenantId <{tenantId}>. Please, execute the UploadExamples tests before theses.");
 
             return randomUploadedFile
-                .ElementAt(_random.Next(randomUploadedFile.Count()))
-                .FileId.ToString();
+                .ElementAt(_random.Next(randomUploadedFile.Count()));
         }
 
         #endregion
