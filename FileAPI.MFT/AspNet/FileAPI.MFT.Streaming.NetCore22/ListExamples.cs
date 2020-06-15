@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 
 namespace FileAPI.MFT.Streaming.NetCore22
 {
-    public class ListExamples : ExamplesBase
+    public class ListExamples : Startup
     {
         public ListExamples(ITestOutputHelper output) : base(output) { }
 

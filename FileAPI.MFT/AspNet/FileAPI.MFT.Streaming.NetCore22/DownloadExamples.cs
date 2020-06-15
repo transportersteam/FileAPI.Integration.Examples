@@ -9,7 +9,7 @@ using Xunit.Abstractions;
 
 namespace FileAPI.MFT.Streaming.NetCore22
 {
-    public class DownloadExamples : ExamplesBase
+    public class DownloadExamples : Startup
     {
         public DownloadExamples(ITestOutputHelper output) : base(output) { }
 

@@ -7,7 +7,7 @@ using Xunit.Abstractions;
 
 namespace FileAPI.MFT.FileSystem.NetCore22
 {
-    public class ExamplesBase
+    public class Startup
     {
         protected IService FileSystem { get; }
 
@@ -17,7 +17,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
 
         protected static ITestOutputHelper Output;
 
-        public ExamplesBase(ITestOutputHelper output)
+        public Startup(ITestOutputHelper output)
         {
             // Internal purpose only. It is used to show messages in the tests.
             Output = output;

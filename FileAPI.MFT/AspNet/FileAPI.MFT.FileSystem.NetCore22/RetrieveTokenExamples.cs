@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 
 namespace FileAPI.MFT.FileSystem.NetCore22
 {
-    public class RetrieveTokenExamples : ExamplesBase
+    public class RetrieveTokenExamples : Startup
     {
         public RetrieveTokenExamples(ITestOutputHelper output) : base(output) { }
 

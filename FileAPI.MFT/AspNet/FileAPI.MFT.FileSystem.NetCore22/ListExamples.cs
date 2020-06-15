@@ -9,7 +9,7 @@ using FileInfo = Ftaas.Sdk.Base.FileInfo;
 
 namespace FileAPI.MFT.FileSystem.NetCore22
 {
-    public class ListExamples : ExamplesBase
+    public class ListExamples : Startup
     {
         public ListExamples(ITestOutputHelper output) : base(output) { }
 

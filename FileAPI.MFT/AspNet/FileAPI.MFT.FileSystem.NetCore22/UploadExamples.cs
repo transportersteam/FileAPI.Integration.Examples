@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 
 namespace FileAPI.MFT.FileSystem.NetCore22
 {
-    public class UploadExamples : ExamplesBase
+    public class UploadExamples : Startup
     {
         public UploadExamples(ITestOutputHelper output) : base(output) { }
 
