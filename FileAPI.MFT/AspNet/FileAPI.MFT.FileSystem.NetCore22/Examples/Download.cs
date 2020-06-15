@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.FileSystem.NetCore22
+namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 {
-    public class DownloadExamples : Startup
+    public class Download : Startup
     {
-        public DownloadExamples(ITestOutputHelper output) : base(output) { }
+        public Download(ITestOutputHelper output) : base(output) { }
 
         [Fact]
         public async Task DownloadOneFile()

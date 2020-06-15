@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.FileSystem.NetCore22
+namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 {
-    public class RetrieveTokenExamples : Startup
+    public class RetrieveToken : Startup
     {
-        public RetrieveTokenExamples(ITestOutputHelper output) : base(output) { }
+        public RetrieveToken(ITestOutputHelper output) : base(output) { }
 
         // This is an example of how to retrieve the authentication token from Ping.
         // This is out of the scope of the File API, but as the File API needs a token to recognize the user, this example was created.

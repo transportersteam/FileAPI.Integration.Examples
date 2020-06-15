@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.FileSystem.NetCore22
+namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 {
-    public class UploadExamples : Startup
+    public class Upload : Startup
     {
-        public UploadExamples(ITestOutputHelper output) : base(output) { }
+        public Upload(ITestOutputHelper output) : base(output) { }
 
         [Fact]
         public async Task UploadOneFile()

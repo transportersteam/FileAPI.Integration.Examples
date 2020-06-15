@@ -1,18 +1,17 @@
-using System;
+using FileAPI.MFT.Utils;
+using Ftaas.Sdk.Base;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using FileAPI.MFT.Utils;
-using Ftaas.Sdk.Base;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.Streaming.NetCore22
+namespace FileAPI.MFT.Streaming.NetCore22.Examples
 {
-    public class UploadExamples : Startup
+    public class Upload : Startup
     {
-        public UploadExamples(ITestOutputHelper output) : base(output) { }
+        public Upload(ITestOutputHelper output) : base(output) { }
 
         [Fact]
         public async void UploadOneFile()

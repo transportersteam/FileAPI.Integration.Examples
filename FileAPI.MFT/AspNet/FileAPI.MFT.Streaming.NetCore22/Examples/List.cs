@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.Streaming.NetCore22
+namespace FileAPI.MFT.Streaming.NetCore22.Examples
 {
-    public class ListExamples : Startup
+    public class List : Startup
     {
-        public ListExamples(ITestOutputHelper output) : base(output) { }
+        public List(ITestOutputHelper output) : base(output) { }
 
         [Fact]
         public async Task ListAvailableFilesWithOneHugeCall()

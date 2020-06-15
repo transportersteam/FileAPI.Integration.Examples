@@ -7,11 +7,11 @@ using Xunit;
 using Xunit.Abstractions;
 using FileInfo = Ftaas.Sdk.Base.FileInfo;
 
-namespace FileAPI.MFT.FileSystem.NetCore22
+namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 {
-    public class ListExamples : Startup
+    public class List : Startup
     {
-        public ListExamples(ITestOutputHelper output) : base(output) { }
+        public List(ITestOutputHelper output) : base(output) { }
 
         [Fact]
         public async Task ListAvailableFilesWithOneHugeCall()
