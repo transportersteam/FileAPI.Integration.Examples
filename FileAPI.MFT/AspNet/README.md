@@ -2,7 +2,7 @@
 
 **AspNet** folder includes a collection of examples that show how to integrate the **File API SDKs** with **.Net Core**.
 
-## Getting Started
+## Getting Started 
 
 Download **AspNet** folder.
 
@@ -13,6 +13,8 @@ Inside the folder there is a solution called **FileAPI.MFT**. This solution cont
 The examples are in the **Examples** folder and they are created as tests methods. So for trying them you have to run them.
 
 Most of the examples require custom information (like the tenant ID you want to use, the business type you want to upload the files to...). This required data is commented in the examples with a **"FILL ME"**. Fill the required data before running the examples.
+
+**NOTE: If you are having errors when excuting the examples. Most likely will be caused because the custom information is not correctly provided.**
 
 ## Projects structure
 

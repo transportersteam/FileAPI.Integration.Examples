@@ -36,6 +36,8 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             // List the files.
             var listResult = await FileSystem.GetAvailableFilesAsync(pagination, tenantId: tenantId);
 
+            Assert.IsType<PaginatedItems<FileInfo>>(listResult);
+
             // Print the result.
             Output.WriteLine("Available files:");
             Output.WriteJsonPaginatedItemsWithoutData(listResult);
@@ -67,11 +69,13 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             do
             {
                 portionListResult = await FileSystem.GetAvailableFilesAsync(pagination, tenantId: tenantId);
-                areAllFilesRetrieved = !portionListResult.Data.Any();
+
+                Assert.IsType<PaginatedItems<FileInfo>>(portionListResult);
 
                 Output.WriteLine($"Call {pagination.PageIndex + 1} (PageSize = {pagination.PageSize}):");
                 Output.WriteJsonPaginatedItemsWithoutData(portionListResult);
 
+                areAllFilesRetrieved = !portionListResult.Data.Any();
                 pagination.PageIndex++;
             } while (!areAllFilesRetrieved);
         }
@@ -101,6 +105,10 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 
             // List the files.
             var listResult = await FileSystem.GetAvailableFilesAsync(pagination, filter: filter, tenantId: tenantId);
+
+            Assert.IsType<PaginatedItems<FileInfo>>(listResult);
+            Assert.DoesNotContain(listResult.Data, fileInfo => fileInfo.UploadDate < DateTime.Parse(lowerDate));
+            Assert.DoesNotContain(listResult.Data, fileInfo => fileInfo.UploadDate > DateTime.Parse(higherDate));
 
             // Print the result.
             Output.WriteLine($"Available files that were uploaded between {lowerDate} and {higherDate}:");
@@ -134,6 +142,10 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             // List the files.
             var listResult = await FileSystem.GetAvailableFilesAsync(pagination, filter: filter, tenantId: tenantId);
 
+            Assert.IsType<PaginatedItems<FileInfo>>(listResult);
+            Assert.DoesNotContain(listResult.Data, fileInfo => fileInfo.UploadDate < DateTime.Parse(lowerDate));
+            Assert.DoesNotContain(listResult.Data, fileInfo => fileInfo.UploadDate > DateTime.Parse(higherDate));
+
             // Print the result.
             Output.WriteLine($"Downloaded files that were uploaded between {lowerDate} and {higherDate}:");
             Output.WriteJson(listResult);
@@ -162,6 +174,10 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 
             // List the files.
             var listResult = await FileSystem.GetAvailableFilesAsync(pagination, orderBy: orderby, tenantId: tenantId);
+
+            Assert.IsType<PaginatedItems<FileInfo>>(listResult);
+            var expectedList = listResult.Data.OrderBy(fileInfo => fileInfo.UploadDate);
+            Assert.True(expectedList.SequenceEqual(listResult.Data), "Files were not retrieved in the specified order.");
 
             // Print the result.
             Output.WriteLine($"Available files sorted by upload date, ascending:");
