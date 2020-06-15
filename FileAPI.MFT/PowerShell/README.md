@@ -97,7 +97,27 @@ $token = "a valid jwt token is required"
 $fileSystemService = GetFileApiFileSystemService $mftServiceBaseAddress $token
 $pagination = new-object Ftaas.Sdk.Base.Pagination
 $cancellationToken = new-object System.Threading.CancellationToken
-$fileSystemService.GetAvailableFilesAsync($tenantId,$pagination,$cancellationToken).GetAwaiter().GetResult() | ConvertTo-Json
+$result = $fileSystemService.GetAvailableFilesAsync($tenantId,$pagination,$cancellationToken).GetAwaiter().GetResult() 
+
+## Show the result
+$files = New-Object System.Collections.ArrayList 
+foreach($fileInfo in $result.Data) 
+{	
+	$file = [ordered]@{
+	"FileId"=$fileInfo.FileId; 
+	"FileName"=$fileInfo.FileName; 
+	"FileSize"=$fileInfo.FileSize;
+	"TenantId"=$fileInfo.TenantId;
+	"businessType"=[ordered]@{
+		"Id"=$fileInfo.BusinessType.Id; 
+		"Name"=$fileInfo.BusinessType.Name};
+	"PublisherId"=$fileInfo.PublisherId;
+	"UploadDate"=$fileInfo.UploadDate.ToString();
+	"Downloaded"=$fileInfo.Downloaded}	
+	$files.Add($file)| out-null
+}
+$resultJson = [ordered]@{"Data"=$files; "PageIndex"=$result.PageIndex; "PageSize"=$result.PageSize; "Count"=$result.Count}
+$resultJson |  ConvertTo-Json -Depth 10 
 ```
 
 ### Downloading a file
