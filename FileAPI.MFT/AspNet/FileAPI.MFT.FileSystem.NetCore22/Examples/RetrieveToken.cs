@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
@@ -20,11 +21,11 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
         [Fact]
         public async Task RetrieveAnAuthenticationTokenFromPing()
         {
-            Output.WriteTittle("Executing FileSystem.SDK example: Retrieve an authentacion token from Ping");
+            Output.WriteTittle("Executing FileSystem.SDK example: Retrieve an authentication token from Ping");
 
             var clientId = "MyClientId"; // FILLME
             var clientSecret = "MyClientSecret"; // FILLME
-            var pingBaseAddress = "https://api-test.raet.com/authentication/token"; // Change it if you want to use another environment
+            var pingBaseAddress = "https://api.raet.com/authentication/token"; // FILLME Change it if you want to use another environment
 
             // Create the request for Ping.
             var request = new HttpRequestMessage
@@ -46,10 +47,15 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             using (var httpClient = new HttpClient() { BaseAddress = new Uri(pingBaseAddress) })
             {
                 var response = await httpClient.SendAsync(request);
+
+                Assert.True(response.StatusCode == HttpStatusCode.OK,
+                    $"Error while trying to retrieve the token from {pingBaseAddress}\n" +
+                    $"Please, ensure the credentials are valid. ClientId <{clientId}> ClientSecret <{clientSecret}>");
+
                 var responseContent = await response.Content.ReadAsStringAsync();
                 var token = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseContent)["access_token"].ToString();
 
-                Output.WriteLine($"Token generated for clientId <{clientId}> and clientSecret <{clientSecret}>:");
+                Output.WriteLine($"Token generated for clientId <{clientId}> and clientSecret <{clientSecret}>:\n");
                 Output.WriteLine($"{token}");
             }
         }
