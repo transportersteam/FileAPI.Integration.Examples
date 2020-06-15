@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.FileSystem.NetCore22.Examples
+namespace FileAPI.MFT.Streaming.NetCore22.Examples
 {
     public class RetrieveToken : Startup
     {
@@ -20,7 +20,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
         [Fact]
         public async Task RetrieveAnAuthenticationTokenFromPing()
         {
-            Output.WriteTittle("Executing FileSystem.SDK example: Retrieve an authentacion token from Ping");
+            Output.WriteTittle("Executing Streaming.SDK example: Retrieve an authentacion token from Ping");
 
             var clientId = "MyClientId";
             var clientSecret = "MyClientSecret";
