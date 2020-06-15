@@ -12,7 +12,7 @@ namespace FileAPI.MFT.Streaming.NetCore22
 
         protected static ITestOutputHelper Output;
 
-        protected readonly string UploadDirectory = Path.Combine(Environment.CurrentDirectory, @"Files\Upload");
+        protected readonly string FilesBaseDirectory = Path.Combine(Environment.CurrentDirectory, "Files");
 
         public ExamplesBase(ITestOutputHelper output)
         {

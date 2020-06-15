@@ -54,7 +54,7 @@ namespace FileAPI.MFT.Streaming.NetCore22
             var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
 
             var fileName = "testFile.txt";
-            var filePath = Path.Combine(UploadDirectory, fileName);
+            var filePath = Path.Combine(FilesBaseDirectory, "Data", fileName);
 
 
             // Read a file and store the content into the MemoryStream.
