@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.FileSystem.NetCore22
+namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 {
-    public class UploadExamples : ExamplesBase
+    public class Upload : Startup
     {
-        public UploadExamples(ITestOutputHelper output) : base(output) { }
+        public Upload(ITestOutputHelper output) : base(output) { }
 
         [Fact]
         public async Task UploadOneFile()
@@ -24,7 +24,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
 
             var fileName = "testFile50kb.txt";
-            var filePath = Path.Combine(UploadDirectory, fileName);
+            var filePath = Path.Combine(FilesBaseDirectory, "Data", fileName);
             var request = new FileUploadRequest
             {
                 Name = "testFile50kb.txt",
@@ -50,7 +50,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
 
             var bigFileName = "testFile10mb.yml";
-            var bigFilePath = Path.Combine(UploadDirectory, bigFileName);
+            var bigFilePath = Path.Combine(FilesBaseDirectory, "Data", bigFileName);
             var bigFileRequest = new FileUploadRequest
             {
                 Name = "testFile10mb.yml",
@@ -58,7 +58,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
             };
 
             var smallFileName = "testFile50kb.txt";
-            var smallFilePath = Path.Combine(UploadDirectory, smallFileName);
+            var smallFilePath = Path.Combine(FilesBaseDirectory, "Data", smallFileName);
             var smallFileRequest = new FileUploadRequest
             {
                 Name = "testFile50kb.txt",

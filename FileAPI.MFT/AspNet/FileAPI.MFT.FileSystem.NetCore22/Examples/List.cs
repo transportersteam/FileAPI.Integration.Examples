@@ -1,16 +1,17 @@
-﻿using FileAPI.MFT.Utils;
+using FileAPI.MFT.Utils;
 using Ftaas.Sdk.Base;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
+using FileInfo = Ftaas.Sdk.Base.FileInfo;
 
-namespace FileAPI.MFT.Streaming.NetCore22
+namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 {
-    public class ListExamples : ExamplesBase
+    public class List : Startup
     {
-        public ListExamples(ITestOutputHelper output) : base(output) { }
+        public List(ITestOutputHelper output) : base(output) { }
 
         [Fact]
         public async Task ListAvailableFilesWithOneHugeCall()
@@ -22,10 +23,10 @@ namespace FileAPI.MFT.Streaming.NetCore22
             //
             // In this example it's shown how to do the first option: do only one call to retrieve all the available files.
 
-            Output.WriteTittle("Executing Streaming.SDK example: List available files with one call");
+            Output.WriteTittle("Executing FileSystem.SDK example: List available files with one call");
 
             // Configure the list.
-            var tenantId = "MyTenant"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -33,7 +34,7 @@ namespace FileAPI.MFT.Streaming.NetCore22
             };
 
             // List the files.
-            var listResult = await Streaming.GetAvailableFilesAsync(pagination, tenantId: tenantId);
+            var listResult = await FileSystem.GetAvailableFilesAsync(pagination, tenantId: tenantId);
 
             // Print the result.
             Output.WriteLine("Available files:");
@@ -49,11 +50,11 @@ namespace FileAPI.MFT.Streaming.NetCore22
             // Depending on your requirements, you can choose between any of theses options.
             // In this example it's shown how to do the second option: do several calls to retrieve all the available files.
 
-            Output.WriteTittle("Executing Streaming.SDK example: List available files with several small calls");
+            Output.WriteTittle("Executing FileSystem.SDK example: List available files with several small calls");
 
             // Configure the list.
             // Every call will retrieve 20 files.
-            var tenantId = "MyTenant"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -65,7 +66,7 @@ namespace FileAPI.MFT.Streaming.NetCore22
             bool areAllFilesRetrieved;
             do
             {
-                portionListResult = await Streaming.GetAvailableFilesAsync(pagination, tenantId: tenantId);
+                portionListResult = await FileSystem.GetAvailableFilesAsync(pagination, tenantId: tenantId);
                 areAllFilesRetrieved = !portionListResult.Data.Any();
 
                 Output.WriteLine($"Call {pagination.PageIndex + 1} (PageSize = {pagination.PageSize}):");
@@ -83,10 +84,10 @@ namespace FileAPI.MFT.Streaming.NetCore22
             // For a better understanding of the filters, please review this link:
             // https://raetwiki.atlassian.net/wiki/spaces/SGW/pages/1274840537/Search+for+Files
 
-            Output.WriteTittle("Executing Streaming.SDK example: List filtered files");
+            Output.WriteTittle("Executing FileSystem.SDK example: List filtered files");
 
             // Configure the list.
-            var tenantId = "MyTenant"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -99,7 +100,7 @@ namespace FileAPI.MFT.Streaming.NetCore22
             var filter = $"UploadDate ge {lowerDate} and UploadDate le {higherDate}";
 
             // List the files.
-            var listResult = await Streaming.GetAvailableFilesAsync(pagination, filter: filter, tenantId: tenantId);
+            var listResult = await FileSystem.GetAvailableFilesAsync(pagination, filter: filter, tenantId: tenantId);
 
             // Print the result.
             Output.WriteLine($"Available files that were uploaded between {lowerDate} and {higherDate}:");
@@ -114,10 +115,10 @@ namespace FileAPI.MFT.Streaming.NetCore22
             // For a better understanding of the filters, please review this link:
             // https://raetwiki.atlassian.net/wiki/spaces/SGW/pages/1274840537/Search+for+Files
 
-            Output.WriteTittle("Executing Streaming.SDK example: List filtered files");
+            Output.WriteTittle("Executing FileSystem.SDK example: List filtered files");
 
             // Configure the list.
-            var tenantId = "MyTenant"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -131,7 +132,7 @@ namespace FileAPI.MFT.Streaming.NetCore22
             var filter = $"UploadDate ge {lowerDate} and UploadDate le {higherDate} and Status eq 'downloaded'";
 
             // List the files.
-            var listResult = await Streaming.GetAvailableFilesAsync(pagination, filter: filter, tenantId: tenantId);
+            var listResult = await FileSystem.GetAvailableFilesAsync(pagination, filter: filter, tenantId: tenantId);
 
             // Print the result.
             Output.WriteLine($"Downloaded files that were uploaded between {lowerDate} and {higherDate}:");
@@ -146,10 +147,10 @@ namespace FileAPI.MFT.Streaming.NetCore22
             // For a better understanding of the sorting, please review this link:
             // https://community.raet.com/developers/w/mft-api/2015/list-available-files
 
-            Output.WriteTittle("Executing Streaming.SDK example: List files sorted by the upload date");
+            Output.WriteTittle("Executing FileSystem.SDK example: List files sorted by the upload date");
 
             // Configure the list.
-            var tenantId = "6401970"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -160,7 +161,7 @@ namespace FileAPI.MFT.Streaming.NetCore22
             var orderby = $"UploadDate asc";
 
             // List the files.
-            var listResult = await Streaming.GetAvailableFilesAsync(pagination, orderBy: orderby, tenantId: tenantId);
+            var listResult = await FileSystem.GetAvailableFilesAsync(pagination, orderBy: orderby, tenantId: tenantId);
 
             // Print the result.
             Output.WriteLine($"Available files sorted by upload date, ascending:");

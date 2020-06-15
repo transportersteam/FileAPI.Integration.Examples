@@ -1,18 +1,17 @@
-using System;
+using FileAPI.MFT.Utils;
+using Ftaas.Sdk.Base;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using FileAPI.MFT.Utils;
-using Ftaas.Sdk.Base;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace FileAPI.MFT.Streaming.NetCore22
+namespace FileAPI.MFT.Streaming.NetCore22.Examples
 {
-    public class UploadExamples : ExamplesBase
+    public class Upload : Startup
     {
-        public UploadExamples(ITestOutputHelper output) : base(output) { }
+        public Upload(ITestOutputHelper output) : base(output) { }
 
         [Fact]
         public async void UploadOneFile()
@@ -54,7 +53,7 @@ namespace FileAPI.MFT.Streaming.NetCore22
             var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
 
             var fileName = "testFile.txt";
-            var filePath = Path.Combine(UploadDirectory, fileName);
+            var filePath = Path.Combine(FilesBaseDirectory, "Data", fileName);
 
 
             // Read a file and store the content into the MemoryStream.
