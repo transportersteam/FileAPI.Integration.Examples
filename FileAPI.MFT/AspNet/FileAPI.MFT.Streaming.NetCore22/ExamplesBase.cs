@@ -38,7 +38,7 @@ namespace FileAPI.MFT.Streaming.NetCore22
                 },
                 async (_) =>
                 {
-                    return await TokenProvider.GenerateAsync();
+                    return await TokenProvider.GetAuthorizationTokenAsync();
                 });
 
             // Get the Streaming.SDK service.
