@@ -21,14 +21,14 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             Output.WriteTittle("Executing FileSystem.SDK example: Upload one file");
 
             // Configure the file that is going to be uploaded.
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
 
             var fileName = "testFile50kb.txt";
             var filePath = Path.Combine(FilesBaseDirectory, "Data", fileName);
             var request = new FileUploadRequest
             {
                 Name = "testFile50kb.txt",
-                BusinessTypeId = 0 // Use the desired businessType.
+                BusinessTypeId = 0 // FILLME Use the desired businessType.
             };
 
             // Upload the file.
@@ -47,14 +47,14 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             Output.WriteTittle("Executing FileSystem.SDK example: Upload two files in parallel");
 
             // Configure the files that are going to be uploaded.
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
 
             var bigFileName = "testFile10mb.yml";
             var bigFilePath = Path.Combine(FilesBaseDirectory, "Data", bigFileName);
             var bigFileRequest = new FileUploadRequest
             {
                 Name = "testFile10mb.yml",
-                BusinessTypeId = 0 // Use the desired businessType.
+                BusinessTypeId = 0 // FILLME Use the desired businessType.
             };
 
             var smallFileName = "testFile50kb.txt";
@@ -62,7 +62,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             var smallFileRequest = new FileUploadRequest
             {
                 Name = "testFile50kb.txt",
-                BusinessTypeId = 0 // Use the desired businessType.
+                BusinessTypeId = 0 // FILLME Use the desired businessType.
             };
 
             // Upload the files.

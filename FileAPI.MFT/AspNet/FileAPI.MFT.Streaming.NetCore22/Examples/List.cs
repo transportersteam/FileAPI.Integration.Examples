@@ -25,7 +25,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Output.WriteTittle("Executing Streaming.SDK example: List available files with one call");
 
             // Configure the list.
-            var tenantId = "MyTenant"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenant"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -53,7 +53,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             // Configure the list.
             // Every call will retrieve 20 files.
-            var tenantId = "MyTenant"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenant"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -86,7 +86,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Output.WriteTittle("Executing Streaming.SDK example: List filtered files");
 
             // Configure the list.
-            var tenantId = "MyTenant"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenant"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -117,7 +117,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Output.WriteTittle("Executing Streaming.SDK example: List filtered files");
 
             // Configure the list.
-            var tenantId = "MyTenant"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenant"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -149,7 +149,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Output.WriteTittle("Executing Streaming.SDK example: List files sorted by the upload date");
 
             // Configure the list.
-            var tenantId = "6401970"; // Only necessary for multi-tenant token.
+            var tenantId = "6401970"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,

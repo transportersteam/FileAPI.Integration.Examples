@@ -22,7 +22,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Output.WriteTittle("Executing Streaming.SDK example: Upload one file by Stream");
 
             // Configure the file that is going to be uploaded.
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
 
             var fileContent = "Cats have contributed to the extinction of 33 different species. Humans might be the next ones.";
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(fileContent));
@@ -30,7 +30,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             var request = new FileUploadRequest
             {
                 Name = "testStreamFile.txt",
-                BusinessTypeId = 0 // Use the desired businessType.
+                BusinessTypeId = 0 // FILLME Use the desired businessType.
             };
 
             // Upload the file.
@@ -50,7 +50,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Output.WriteTittle("Executing Streaming.SDK example: Upload one file by Stream from file");
 
             // Configure the file that is going to be uploaded.
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
 
             var fileName = "testFile.txt";
             var filePath = Path.Combine(FilesBaseDirectory, "Data", fileName);
@@ -70,7 +70,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
                     var request = new FileUploadRequest
                     {
                         Name = "testStreamFile.txt",
-                        BusinessTypeId = 0 // Use the desired businessType.
+                        BusinessTypeId = 0 // FILLME Use the desired businessType.
                     };
 
                     // Reset the position of the memory stream.
@@ -95,7 +95,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Output.WriteTittle("Executing Streaming.SDK example: Upload two files in parallel by Stream");
 
             // Configure the files that are going to be uploaded.
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
 
             // Create file content and the file request of the first file.
             var file1Content = "Cats have contributed to the extinction of 33 different species. Humans might be the next ones.";
@@ -103,7 +103,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             var firstFileRequest = new FileUploadRequest
             {
                 Name = "testFile1.yml",
-                BusinessTypeId = 8000
+                BusinessTypeId = 0 // FILLME Use the desired businessType.
             };
 
             // Create file content and file request of the second file.
@@ -112,7 +112,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             var secondFileRequest = new FileUploadRequest
             {
                 Name = "testFile2.txt",
-                BusinessTypeId = 0 // Use the desired businessType.
+                BusinessTypeId = 0 // FILLME Use the desired businessType.
             };
 
             // Upload the files.

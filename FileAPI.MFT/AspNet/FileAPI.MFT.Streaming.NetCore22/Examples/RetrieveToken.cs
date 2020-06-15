@@ -22,8 +22,8 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
         {
             Output.WriteTittle("Executing Streaming.SDK example: Retrieve an authentacion token from Ping");
 
-            var clientId = "MyClientId";
-            var clientSecret = "MyClientSecret";
+            var clientId = "MyClientId"; // FILLME
+            var clientSecret = "MyClientSecret"; // FILLME
             var pingBaseAddress = "https://api-test.raet.com/authentication/token"; // Change it if you want to use another environment
 
             // Create the request for Ping.

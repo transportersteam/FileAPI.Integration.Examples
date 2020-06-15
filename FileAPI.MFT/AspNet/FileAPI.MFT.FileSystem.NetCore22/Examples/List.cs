@@ -26,7 +26,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             Output.WriteTittle("Executing FileSystem.SDK example: List available files with one call");
 
             // Configure the list.
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -54,7 +54,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 
             // Configure the list.
             // Every call will retrieve 20 files.
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -87,7 +87,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             Output.WriteTittle("Executing FileSystem.SDK example: List filtered files");
 
             // Configure the list.
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -118,7 +118,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             Output.WriteTittle("Executing FileSystem.SDK example: List filtered files");
 
             // Configure the list.
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -150,7 +150,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             Output.WriteTittle("Executing FileSystem.SDK example: List files sorted by the upload date");
 
             // Configure the list.
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,

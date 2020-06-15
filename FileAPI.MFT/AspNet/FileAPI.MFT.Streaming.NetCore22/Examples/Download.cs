@@ -18,7 +18,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
         {
             Output.WriteTittle("Executing Streaming.SDK example: Download one file");
 
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
@@ -36,7 +36,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
         {
             Output.WriteTittle("Executing Streaming.SDK example: Download one file and save the content in a file system");
 
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
@@ -57,7 +57,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             Output.WriteTittle("Executing Streaming.SDK example: Download two files in parallel");
 
-            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
