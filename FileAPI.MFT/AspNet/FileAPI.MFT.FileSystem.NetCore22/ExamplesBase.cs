@@ -11,7 +11,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22
     {
         protected IService FileSystem { get; }
 
-        protected readonly string UploadDirectory = Path.Combine(Environment.CurrentDirectory, @"Files\Upload");
+        protected readonly string FilesBaseDirectory = Path.Combine(Environment.CurrentDirectory, @"Files");
 
         protected static ITestOutputHelper Output;
 
