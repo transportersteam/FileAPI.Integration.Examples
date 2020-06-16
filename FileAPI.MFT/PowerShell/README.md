@@ -108,7 +108,7 @@ foreach($fileInfo in $result.Data)
 	"FileName"=$fileInfo.FileName; 
 	"FileSize"=$fileInfo.FileSize;
 	"TenantId"=$fileInfo.TenantId;
-	"businessType"=[ordered]@{
+	"BusinessType"=[ordered]@{
 		"Id"=$fileInfo.BusinessType.Id; 
 		"Name"=$fileInfo.BusinessType.Name};
 	"PublisherId"=$fileInfo.PublisherId;
@@ -152,7 +152,7 @@ $mftServiceBaseAddress = "https://api.raet.com/mft/v1.0/"
 $token = "a valid jwt token is required"
 $fileSystemService = GetFileApiFileSystemService $mftServiceBaseAddress $token
 $cancellationToken = new-object System.Threading.CancellationToken
-$fileSystemService.DownloadFileAsync($fileId,$filePath,$tenantId,$cancellationToken).GetAwaiter().GetResult()
+$result = $fileSystemService.DownloadFileAsync($fileId,$filePath,$tenantId,$cancellationToken).GetAwaiter().GetResult()
 ```
 
 ### Uploading a file
@@ -187,8 +187,19 @@ $mftServiceBaseAddress = "https://api.raet.com/mft/v1.0/"
 $token = "a valid jwt token is required"
 $fileSystemService = GetFileApiFileSystemService $mftServiceBaseAddress $token
 $cancellationToken = new-object System.Threading.CancellationToken
-$fileSystemService.UploadFileAsync($businessTypeId,$filePath,$tenantId,$cancellationToken).GetAwaiter().GetResult() | ConvertTo-Json
+$result = $fileSystemService.UploadFileAsync($businessTypeId,$filePath,$tenantId,$cancellationToken).GetAwaiter().GetResult()
 
+## Show the result
+$file = [ordered]@{
+	"Id"=$result.Id; 
+	"Name"=$result.Name; 
+	"Size"=$result.Size;
+	"CreationDate"=$result.CreationDate.ToString();
+	"BusinessType"=[ordered]@{
+		"Id"=$result.BusinessType.Id; 
+		"Name"=$result.BusinessType.Name};
+	"NumChunks"=$result.NumChunks;}
+$file |  ConvertTo-Json -Depth 10 
 ```
 
 ## Authors
