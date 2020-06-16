@@ -17,9 +17,13 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
         [Fact]
         public async Task DownloadOneFile()
         {
-            Output.WriteTittle("Executing Streaming.SDK example: Download one file");
+            #region Custom parameters
 
-            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+
+            #endregion
+
+            Output.WriteTittle("Executing Streaming.SDK example: Download one file");
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
@@ -38,9 +42,13 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
         [Fact]
         public async Task DownloadOneFileAndSaveItInFileSystem()
         {
-            Output.WriteTittle("Executing Streaming.SDK example: Download one file and save the content in a file system");
+            #region Custom parameters
 
-            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+
+            #endregion
+
+            Output.WriteTittle("Executing Streaming.SDK example: Download one file and save the content in a file system");
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
@@ -61,11 +69,15 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
         [Fact]
         public async Task DownloadTwoFilesInParallel()
         {
+            #region Custom parameters
+
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+
+            #endregion
+
             // As the call is asynchronous, it is possible to do several calls in parallel.
 
             Output.WriteTittle("Executing Streaming.SDK example: Download two files in parallel");
-
-            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.

@@ -22,10 +22,15 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             //
             // In this example it's shown how to do the first option: do only one call to retrieve all the available files.
 
+            #region Custom parameters
+
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+
+            #endregion
+
             Output.WriteTittle("Executing Streaming.SDK example: List available files with one call");
 
             // Configure the list.
-            var tenantId = "MyTenant"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -51,11 +56,16 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             // Depending on your requirements, you can choose between any of theses options.
             // In this example it's shown how to do the second option: do several calls to retrieve all the available files.
 
+            #region Custom parameters
+
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+
+            #endregion
+
             Output.WriteTittle("Executing Streaming.SDK example: List available files with several small calls");
 
             // Configure the list.
             // Every call will retrieve 20 files.
-            var tenantId = "MyTenant"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -87,10 +97,15 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             // For a better understanding of the filters, please review this link:
             // https://raetwiki.atlassian.net/wiki/spaces/SGW/pages/1274840537/Search+for+Files
 
+            #region Custom parameters
+
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+
+            #endregion
+
             Output.WriteTittle("Executing Streaming.SDK example: List filtered files");
 
             // Configure the list.
-            var tenantId = "MyTenant"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -122,10 +137,15 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             // For a better understanding of the filters, please review this link:
             // https://raetwiki.atlassian.net/wiki/spaces/SGW/pages/1274840537/Search+for+Files
 
+            #region Custom parameters
+
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+
+            #endregion
+
             Output.WriteTittle("Executing Streaming.SDK example: List filtered files");
 
             // Configure the list.
-            var tenantId = "MyTenant"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
@@ -158,10 +178,15 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             // For a better understanding of the sorting, please review this link:
             // https://community.raet.com/developers/w/mft-api/2015/list-available-files
 
+            #region Custom parameters
+
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+
+            #endregion
+
             Output.WriteTittle("Executing Streaming.SDK example: List files sorted by the upload date");
 
             // Configure the list.
-            var tenantId = "6401970"; // FILLME Only necessary for multi-tenant token.
             var pagination = new Pagination
             {
                 PageIndex = 0,
