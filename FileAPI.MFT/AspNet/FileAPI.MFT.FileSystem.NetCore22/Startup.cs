@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using Xunit.Abstractions;
 
 namespace FileAPI.MFT.FileSystem.NetCore22
 {
@@ -16,13 +15,8 @@ namespace FileAPI.MFT.FileSystem.NetCore22
 
         protected readonly string FilesBaseDirectory = Path.Combine(Environment.CurrentDirectory, "Files");
 
-        protected static ITestOutputHelper Output;
-
-        public Startup(ITestOutputHelper output)
+        public Startup()
         {
-            // Internal purpose only. It is used to show messages in the tests.
-            Output = output;
-
             Config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("config.json")

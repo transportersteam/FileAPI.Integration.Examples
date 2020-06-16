@@ -10,7 +10,12 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 {
     public class Upload : Startup
     {
-        public Upload(ITestOutputHelper output) : base(output) { }
+        private static ITestOutputHelper _output;
+
+        public Upload(ITestOutputHelper output)
+        {
+            _output = output;
+        }
 
         [Fact]
         public async Task UploadOneFile()
@@ -25,7 +30,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing FileSystem.SDK example: Upload one file");
+            _output.WriteTittle("Executing FileSystem.SDK example: Upload one file");
 
             // Configure the file that is going to be uploaded.
             var fileName = "testFile50kb.txt";
@@ -44,8 +49,8 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             Assert.Equal(51200, uploadResult.Size); // 50 kb
 
             // Print the result.
-            Output.WriteLine("File was uploaded:");
-            Output.WriteJson(uploadResult);
+            _output.WriteLine("File was uploaded:");
+            _output.WriteJson(uploadResult);
         }
 
         [Fact]
@@ -61,7 +66,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing FileSystem.SDK example: Upload two files in parallel");
+            _output.WriteTittle("Executing FileSystem.SDK example: Upload two files in parallel");
 
             // Configure the files that are going to be uploaded.
             var bigFileName = "testFile10mb.yml";
@@ -97,8 +102,8 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             Assert.True(bigFileName == firstUploadedFile.Name || smallFileName == firstUploadedFile.Name);
             Assert.True(51200 == firstUploadedFile.Size || 10485760 == firstUploadedFile.Size);
 
-            Output.WriteLine("First uploaded file:");
-            Output.WriteJson(firstUploadedFile);
+            _output.WriteLine("First uploaded file:");
+            _output.WriteJson(firstUploadedFile);
 
             var secondUploadedTask = await Task.WhenAny(uploadTasks);
             var secondUploadedFile = secondUploadedTask.Result;
@@ -107,8 +112,8 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             Assert.True(bigFileName == secondUploadedFile.Name || smallFileName == secondUploadedFile.Name);
             Assert.True(51200 == secondUploadedFile.Size || 10485760 == secondUploadedFile.Size);
 
-            Output.WriteLine("Second uploaded file:");
-            Output.WriteJson(secondUploadedFile);
+            _output.WriteLine("Second uploaded file:");
+            _output.WriteJson(secondUploadedFile);
         }
     }
 }

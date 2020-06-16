@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Ftaas.Sdk.Streaming;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit.Abstractions;
 
 namespace FileAPI.MFT.Streaming.NetCore22
 {
@@ -16,13 +15,8 @@ namespace FileAPI.MFT.Streaming.NetCore22
 
         protected readonly string FilesBaseDirectory = Path.Combine(Environment.CurrentDirectory, "Files");
 
-        protected static ITestOutputHelper Output;
-
-        public Startup(ITestOutputHelper output)
+        public Startup()
         {
-            // Internal purpose only. It is used to show messages in the tests.
-            Output = output;
-
             Config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("config.json")

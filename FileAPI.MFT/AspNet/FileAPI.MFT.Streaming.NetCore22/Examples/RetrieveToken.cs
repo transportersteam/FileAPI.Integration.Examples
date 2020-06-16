@@ -12,7 +12,12 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 {
     public class RetrieveToken : Startup
     {
-        public RetrieveToken(ITestOutputHelper output) : base(output) { }
+        private readonly ITestOutputHelper _output;
+
+        public RetrieveToken(ITestOutputHelper output)
+        {
+            _output = output;
+        }
 
         [Fact]
         public async Task RetrieveAnAuthenticationTokenFromPing()
@@ -30,7 +35,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing Streaming.SDK example: Retrieve an authentication token from Ping");
+            _output.WriteTittle("Executing Streaming.SDK example: Retrieve an authentication token from Ping");
 
             // Create the request for Ping.
             var request = new HttpRequestMessage
@@ -60,8 +65,8 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
                 var responseContent = await response.Content.ReadAsStringAsync();
                 var token = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseContent)["access_token"].ToString();
 
-                Output.WriteLine($"Token generated for clientId <{clientId}> and clientSecret <{clientSecret}>:");
-                Output.WriteLine($"{token}");
+                _output.WriteLine($"Token generated for clientId <{clientId}> and clientSecret <{clientSecret}>:");
+                _output.WriteLine($"{token}");
             }
         }
     }

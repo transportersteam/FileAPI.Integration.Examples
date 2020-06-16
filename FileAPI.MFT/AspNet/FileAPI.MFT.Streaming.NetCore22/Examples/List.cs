@@ -10,7 +10,12 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 {
     public class List : Startup
     {
-        public List(ITestOutputHelper output) : base(output) { }
+        private readonly ITestOutputHelper _output;
+
+        public List(ITestOutputHelper output)
+        {
+            _output = output;
+        }
 
         [Fact]
         public async Task ListAvailableFilesWithOneHugeCall()
@@ -28,7 +33,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing Streaming.SDK example: List available files with one call");
+            _output.WriteTittle("Executing Streaming.SDK example: List available files with one call");
 
             // Configure the list.
             var pagination = new Pagination
@@ -43,8 +48,8 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Assert.IsType<PaginatedItems<FileInfo>>(listResult);
 
             // Print the result.
-            Output.WriteLine("Available files:");
-            Output.WriteJsonPaginatedItemsWithoutData(listResult);
+            _output.WriteLine("Available files:");
+            _output.WriteJsonPaginatedItemsWithoutData(listResult);
         }
 
         [Fact]
@@ -62,7 +67,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing Streaming.SDK example: List available files with several small calls");
+            _output.WriteTittle("Executing Streaming.SDK example: List available files with several small calls");
 
             // Configure the list.
             // Every call will retrieve 20 files.
@@ -81,8 +86,8 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
                 Assert.IsType<PaginatedItems<FileInfo>>(portionListResult);
 
-                Output.WriteLine($"Call {pagination.PageIndex + 1} (PageSize = {pagination.PageSize}):");
-                Output.WriteJsonPaginatedItemsWithoutData(portionListResult);
+                _output.WriteLine($"Call {pagination.PageIndex + 1} (PageSize = {pagination.PageSize}):");
+                _output.WriteJsonPaginatedItemsWithoutData(portionListResult);
 
                 areAllFilesRetrieved = !portionListResult.Data.Any();
                 pagination.PageIndex++;
@@ -103,7 +108,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing Streaming.SDK example: List filtered files");
+            _output.WriteTittle("Executing Streaming.SDK example: List filtered files");
 
             // Configure the list.
             var pagination = new Pagination
@@ -125,8 +130,8 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Assert.DoesNotContain(listResult.Data, fileInfo => fileInfo.UploadDate > DateTime.Parse(higherDate));
 
             // Print the result.
-            Output.WriteLine($"Available files that were uploaded between {lowerDate} and {higherDate}:");
-            Output.WriteJson(listResult);
+            _output.WriteLine($"Available files that were uploaded between {lowerDate} and {higherDate}:");
+            _output.WriteJson(listResult);
         }
 
         [Fact]
@@ -143,7 +148,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing Streaming.SDK example: List filtered files");
+            _output.WriteTittle("Executing Streaming.SDK example: List filtered files");
 
             // Configure the list.
             var pagination = new Pagination
@@ -166,8 +171,8 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Assert.DoesNotContain(listResult.Data, fileInfo => fileInfo.UploadDate > DateTime.Parse(higherDate));
 
             // Print the result.
-            Output.WriteLine($"Downloaded files that were uploaded between {lowerDate} and {higherDate}:");
-            Output.WriteJson(listResult);
+            _output.WriteLine($"Downloaded files that were uploaded between {lowerDate} and {higherDate}:");
+            _output.WriteJson(listResult);
         }
 
         [Fact]
@@ -184,7 +189,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing Streaming.SDK example: List files sorted by the upload date");
+            _output.WriteTittle("Executing Streaming.SDK example: List files sorted by the upload date");
 
             // Configure the list.
             var pagination = new Pagination
@@ -204,8 +209,8 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Assert.True(expectedList.SequenceEqual(listResult.Data), "Files were not retrieved in the specified order.");
 
             // Print the result.
-            Output.WriteLine($"Available files sorted by upload date, ascending:");
-            Output.WriteJson(listResult);
+            _output.WriteLine($"Available files sorted by upload date, ascending:");
+            _output.WriteJson(listResult);
         }
     }
 }

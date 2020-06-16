@@ -12,7 +12,12 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 {
     public class Download : Startup
     {
-        public Download(ITestOutputHelper output) : base(output) { }
+        private static ITestOutputHelper _output;
+
+        public Download(ITestOutputHelper output)
+        {
+            _output = output;
+        }
 
         [Fact]
         public async Task DownloadOneFile()
@@ -23,7 +28,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing FileSystem.SDK example: Download one file");
+            _output.WriteTittle("Executing FileSystem.SDK example: Download one file");
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
@@ -34,7 +39,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 
             Assert.True(File.Exists(downloadPath), $"File was not downloaded correctly to {downloadPath}");
 
-            Output.WriteLine($"File downloaded at {downloadPath}");
+            _output.WriteLine($"File downloaded at {downloadPath}");
         }
 
         [Fact]
@@ -48,7 +53,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing FileSystem.SDK example: Download two files in parallel");
+            _output.WriteTittle("Executing FileSystem.SDK example: Download two files in parallel");
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
@@ -71,13 +76,13 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             downloadTasks.Remove(firstDownloadedFile);
             Assert.True(File.Exists(downloadPathFirst) || File.Exists(downloadPathSecond),
                 $"File was not downloaded correctly to {FilesBaseDirectory}");
-            Output.WriteLine($"First downloaded file: {downloadPathFirst}");
+            _output.WriteLine($"First downloaded file: {downloadPathFirst}");
 
             await Task.WhenAny(downloadTasks);
 
             Assert.True(File.Exists(downloadPathFirst) && File.Exists(downloadPathSecond),
                 $"Files were not downloaded correctly to {FilesBaseDirectory}");
-            Output.WriteLine($"Second downloaded file: {downloadPathSecond}");
+            _output.WriteLine($"Second downloaded file: {downloadPathSecond}");
         }
 
         #region Helper methods

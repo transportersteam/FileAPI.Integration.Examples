@@ -11,7 +11,12 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 {
     public class Upload : Startup
     {
-        public Upload(ITestOutputHelper output) : base(output) { }
+        private readonly ITestOutputHelper _output;
+
+        public Upload(ITestOutputHelper output)
+        {
+            _output = output;
+        }
 
         [Fact]
         public async void UploadOneFile()
@@ -26,7 +31,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing Streaming.SDK example: Upload one file by Stream");
+            _output.WriteTittle("Executing Streaming.SDK example: Upload one file by Stream");
 
             // Configure the file that is going to be uploaded.
             var fileContent = "Cats have contributed to the extinction of 33 different species. Humans might be the next ones.";
@@ -46,8 +51,8 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Assert.Equal(ms.Length, uploadResult.Size);
 
             // Print the result.
-            Output.WriteLine("File was uploaded:");
-            Output.WriteJson(uploadResult);
+            _output.WriteLine("File was uploaded:");
+            _output.WriteJson(uploadResult);
         }
 
         [Fact]
@@ -63,7 +68,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing Streaming.SDK example: Upload one file by Stream from file");
+            _output.WriteTittle("Executing Streaming.SDK example: Upload one file by Stream from file");
 
             // Configure the file that is going to be uploaded.
             var fileName = "testFile.txt";
@@ -96,8 +101,8 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
                     Assert.Equal(ms.Length, uploadResult.Size);
 
                     // Print the result.
-                    Output.WriteLine("File was uploaded:");
-                    Output.WriteJson(uploadResult);
+                    _output.WriteLine("File was uploaded:");
+                    _output.WriteJson(uploadResult);
                 }
             }
         }
@@ -115,7 +120,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing Streaming.SDK example: Upload two files in parallel by Stream");
+            _output.WriteTittle("Executing Streaming.SDK example: Upload two files in parallel by Stream");
 
             // Configure the files that are going to be uploaded.
 
@@ -154,8 +159,8 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Assert.True(firstFileRequest.Name == firstUploadedFile.Name || secondFileRequest.Name == firstUploadedFile.Name);
             Assert.True(ms1.Length == firstUploadedFile.Size || ms2.Length == firstUploadedFile.Size);
 
-            Output.WriteLine("First uploaded file:");
-            Output.WriteJson(firstUploadedFile);
+            _output.WriteLine("First uploaded file:");
+            _output.WriteJson(firstUploadedFile);
 
             var secondUploadedTask = await Task.WhenAny(uploadTasks);
             var secondUploadedFile = secondUploadedTask.Result;
@@ -164,8 +169,8 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             Assert.True(firstFileRequest.Name == secondUploadedFile.Name || secondFileRequest.Name == secondUploadedFile.Name);
             Assert.True(ms1.Length == secondUploadedFile.Size || ms2.Length == secondUploadedFile.Size);
 
-            Output.WriteLine("Second uploaded file:");
-            Output.WriteJson(secondUploadedFile);
+            _output.WriteLine("Second uploaded file:");
+            _output.WriteJson(secondUploadedFile);
         }
     }
 }

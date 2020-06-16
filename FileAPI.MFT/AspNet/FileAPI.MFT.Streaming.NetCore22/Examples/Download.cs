@@ -12,7 +12,12 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 {
     public class Download : Startup
     {
-        public Download(ITestOutputHelper output) : base(output) { }
+        private readonly ITestOutputHelper _output;
+
+        public Download(ITestOutputHelper output)
+        {
+            _output = output;
+        }
 
         [Fact]
         public async Task DownloadOneFile()
@@ -23,7 +28,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing Streaming.SDK example: Download one file");
+            _output.WriteTittle("Executing Streaming.SDK example: Download one file");
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
@@ -35,7 +40,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
                 await Streaming.DownloadFileAsync(fileId, ms, tenantId: tenantId);
 
                 Assert.Equal(fileInfo.FileSize, ms.Length);
-                Output.WriteLine($"File <{fileId}>. Content downloaded.");
+                _output.WriteLine($"File <{fileId}>. Content downloaded.");
             }
         }
 
@@ -48,7 +53,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             #endregion
 
-            Output.WriteTittle("Executing Streaming.SDK example: Download one file and save the content in a file system");
+            _output.WriteTittle("Executing Streaming.SDK example: Download one file and save the content in a file system");
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
@@ -62,7 +67,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
                 Assert.Equal(fileInfo.FileSize, fs.Length);
                 Assert.True(File.Exists(filePath), $"File was not downloaded correctly to {filePath}");
-                Output.WriteLine($"File <{fileId}> downloaded at {filePath}");
+                _output.WriteLine($"File <{fileId}> downloaded at {filePath}");
             }
         }
 
@@ -77,7 +82,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             // As the call is asynchronous, it is possible to do several calls in parallel.
 
-            Output.WriteTittle("Executing Streaming.SDK example: Download two files in parallel");
+            _output.WriteTittle("Executing Streaming.SDK example: Download two files in parallel");
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
@@ -90,7 +95,7 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             using (var msFirstFile = new MemoryStream())
             using (var msSecondFile = new MemoryStream())
             {
-                Output.WriteLine($"Downloading files <{fileIdFirst}> and <{fileIdSecond}>.");
+                _output.WriteLine($"Downloading files <{fileIdFirst}> and <{fileIdSecond}>.");
 
                 var downloadTasks = new List<Task>
                 {
@@ -105,13 +110,13 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
                 
                 Assert.True(fileInfoFirst.FileSize == msFirstFile.Length || fileInfoSecond.FileSize == msSecondFile.Length,
                     "The downloaded stream doesn't contain the uploaded content.");
-                Output.WriteLine($"File <{fileIdFirst}>. Content downloaded.");
+                _output.WriteLine($"File <{fileIdFirst}>. Content downloaded.");
 
                 await Task.WhenAny(downloadTasks);
 
                 Assert.True(fileInfoFirst.FileSize == msFirstFile.Length && fileInfoSecond.FileSize == msSecondFile.Length,
                      "The downloaded stream doesn't contain the uploaded content.");
-                Output.WriteLine($"File <{fileIdSecond}>. Content downloaded.");
+                _output.WriteLine($"File <{fileIdSecond}>. Content downloaded.");
             }
         }
 
