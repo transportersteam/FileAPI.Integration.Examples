@@ -34,6 +34,10 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             // Upload the file.
             var uploadResult = await FileSystem.UploadFileAsync(request, filePath, tenantId: tenantId);
 
+            Assert.IsType<FileUploadInfo>(uploadResult);
+            Assert.Equal(fileName, uploadResult.Name);
+            Assert.Equal(51200, uploadResult.Size); // 50 kb
+
             // Print the result.
             Output.WriteLine("File was uploaded:");
             Output.WriteJson(uploadResult);
@@ -74,16 +78,26 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
 
             // Wait for the files to be uploaded and print the results.
             // If you only care about all files being uploaded and not the order, you can use Task.WhenAll instead.
-            var firstUploadedFile = await Task.WhenAny(uploadTasks);
-            uploadTasks.Remove(firstUploadedFile);
+            var firstUploadedTask = await Task.WhenAny(uploadTasks);
+            uploadTasks.Remove(firstUploadedTask);
+            var firstUploadedFile = firstUploadedTask.Result;
+
+            Assert.IsType<FileUploadInfo>(firstUploadedFile);
+            Assert.True(bigFileName == firstUploadedFile.Name || smallFileName == firstUploadedFile.Name);
+            Assert.True(51200 == firstUploadedFile.Size || 10485760 == firstUploadedFile.Size);
 
             Output.WriteLine("First uploaded file:");
-            Output.WriteJson(firstUploadedFile.Result);
+            Output.WriteJson(firstUploadedFile);
 
-            var secondUploadedFile = await Task.WhenAny(uploadTasks);
+            var secondUploadedTask = await Task.WhenAny(uploadTasks);
+            var secondUploadedFile = secondUploadedTask.Result;
+
+            Assert.IsType<FileUploadInfo>(firstUploadedFile);
+            Assert.True(bigFileName == secondUploadedFile.Name || smallFileName == secondUploadedFile.Name);
+            Assert.True(51200 == secondUploadedFile.Size || 10485760 == secondUploadedFile.Size);
 
             Output.WriteLine("Second uploaded file:");
-            Output.WriteJson(secondUploadedFile.Result);
+            Output.WriteJson(secondUploadedFile);
         }
     }
 }

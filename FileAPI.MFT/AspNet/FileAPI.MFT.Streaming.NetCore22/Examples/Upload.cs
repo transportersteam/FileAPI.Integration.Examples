@@ -36,6 +36,10 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             // Upload the file.
             var uploadResult = await Streaming.UploadFileAsync(request, ms, tenantId: tenantId);
 
+            Assert.IsType<FileUploadInfo>(uploadResult);
+            Assert.Equal(request.Name, uploadResult.Name);
+            Assert.Equal(ms.Length, uploadResult.Size);
+
             // Print the result.
             Output.WriteLine("File was uploaded:");
             Output.WriteJson(uploadResult);
@@ -55,17 +59,15 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
             var fileName = "testFile.txt";
             var filePath = Path.Combine(FilesBaseDirectory, "Data", fileName);
 
-
             // Read a file and store the content into the MemoryStream.
             // If you want to upload directly from the file, check the examples of FileApi.MFT.FileSystem.
-            using (MemoryStream ms = new MemoryStream())
+            using (var ms = new MemoryStream())
             {
-                using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                using (var file = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    byte[] bytes = new byte[file.Length];
+                    var bytes = new byte[file.Length];
                     file.Read(bytes, 0, (int)file.Length);
                     ms.Write(bytes, 0, (int)file.Length);
-
 
                     var request = new FileUploadRequest
                     {
@@ -79,6 +81,9 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
                     // Upload the file.
                     var uploadResult = await Streaming.UploadFileAsync(request, ms, tenantId: tenantId);
 
+                    Assert.IsType<FileUploadInfo>(uploadResult);
+                    Assert.Equal(request.Name, uploadResult.Name);
+                    Assert.Equal(ms.Length, uploadResult.Size);
 
                     // Print the result.
                     Output.WriteLine("File was uploaded:");
@@ -124,16 +129,26 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             // Wait for the files to be uploaded and print the results.
             // If you only care about all files being uploaded and not the order, you can use Task.WhenAll instead.
-            var firstUploadedFile = await Task.WhenAny(uploadTasks);
-            uploadTasks.Remove(firstUploadedFile);
+            var firstUploadedTask = await Task.WhenAny(uploadTasks);
+            uploadTasks.Remove(firstUploadedTask);
+            var firstUploadedFile = firstUploadedTask.Result;
+
+            Assert.IsType<FileUploadInfo>(firstUploadedFile);
+            Assert.True(firstFileRequest.Name == firstUploadedFile.Name || secondFileRequest.Name == firstUploadedFile.Name);
+            Assert.True(ms1.Length == firstUploadedFile.Size || ms2.Length == firstUploadedFile.Size);
 
             Output.WriteLine("First uploaded file:");
-            Output.WriteJson(firstUploadedFile.Result);
+            Output.WriteJson(firstUploadedFile);
 
-            var secondUploadedFile = await Task.WhenAny(uploadTasks);
+            var secondUploadedTask = await Task.WhenAny(uploadTasks);
+            var secondUploadedFile = secondUploadedTask.Result;
+
+            Assert.IsType<FileUploadInfo>(secondUploadedFile);
+            Assert.True(firstFileRequest.Name == secondUploadedFile.Name || secondFileRequest.Name == secondUploadedFile.Name);
+            Assert.True(ms1.Length == secondUploadedFile.Size || ms2.Length == secondUploadedFile.Size);
 
             Output.WriteLine("Second uploaded file:");
-            Output.WriteJson(secondUploadedFile.Result);
+            Output.WriteJson(secondUploadedFile);
         }
     }
 }
