@@ -12,16 +12,16 @@ Inside the folder there is a solution called **FileAPI.MFT**. This solution cont
 
 The examples are in the **Examples** folder and they are created as tests methods. So for trying them you have to run them.
 
-Most of the examples require custom information (like the tenant ID you want to use, the business type you want to upload the files to...). This required data is commented in the examples with a **"FILL ME"**. Fill the required data before running the examples.
+Most of the examples require custom parameters (like the tenant ID you want to use, the business type you want to upload the files to...). This required data is commented in the examples with a **"FILL ME"**. Fill the required data before running the examples.
 
-**NOTE: If you are having errors when excuting the examples. Most likely will be caused because the custom information is not correctly provided.**
+**NOTE: If you are having errors when excuting the examples. Most likely will be caused because the custom parameters is not correctly provided.**
 
 ## Projects structure
 
 Both projects has the same structure:
   - **Example** folder contains all the examples as test methods.
   - **Files** folder works as an internal file system. It also provides some sample files.
-  - **config.json** contains some information that is going to be repeated through the examples.
+  - **config.json** contains some parameters that is going to be repeated through the examples.
   - **Startup.cs** initialize the examples and injects the SDK.
 
 ## Running Examples

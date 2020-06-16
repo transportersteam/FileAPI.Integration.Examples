@@ -14,18 +14,23 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
     {
         public RetrieveToken(ITestOutputHelper output) : base(output) { }
 
-        // This is an example of how to retrieve the authentication token from Ping.
-        // This is out of the scope of the File API, but as the File API needs a token to recognize the user, this example was created.
-        // To get more information about how to retrieve the token, please refer to the Ping documentation.
-        // ToDo Add ping documentation.
         [Fact]
         public async Task RetrieveAnAuthenticationTokenFromPing()
         {
-            Output.WriteTittle("Executing FileSystem.SDK example: Retrieve an authentication token from Ping");
+            // This is an example of how to retrieve the authentication token from Ping.
+            // This is out of the scope of the File API, but as the File API needs a token to recognize the user, this example was created.
+            // To get more information about how to retrieve the token, please refer to the Ping documentation.
+            // ToDo Add ping documentation.
 
-            var clientId = "MyClientId"; // FILLME
-            var clientSecret = "MyClientSecret"; // FILLME
-            var pingBaseAddress = "https://api.raet.com/authentication/token"; // FILLME Change it if you want to use another environment
+            #region Custom parameters
+
+            var clientId = "MyClientId";
+            var clientSecret = "MyClientSecret";
+            var pingBaseAddress = "https://api.raet.com/authentication/token"; // Change it if you want to use another environment
+
+            #endregion
+
+            Output.WriteTittle("Executing FileSystem.SDK example: Retrieve an authentication token from Ping");
 
             // Create the request for Ping.
             var request = new HttpRequestMessage

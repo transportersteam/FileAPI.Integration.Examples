@@ -18,17 +18,22 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             // To upload a file you need to provide the path of the file and the BusinessType where it's going to be uploaded.
             // Also, if you have a multitenant-token, the tenantId needs to be provided.
 
+            #region Custom parameters
+
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var businessTypeId = 0; // Use the desired businessType.
+
+            #endregion
+
             Output.WriteTittle("Executing FileSystem.SDK example: Upload one file");
 
             // Configure the file that is going to be uploaded.
-            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
-
             var fileName = "testFile50kb.txt";
             var filePath = Path.Combine(FilesBaseDirectory, "Data", fileName);
             var request = new FileUploadRequest
             {
                 Name = "testFile50kb.txt",
-                BusinessTypeId = 0 // FILLME Use the desired businessType.
+                BusinessTypeId = businessTypeId
             };
 
             // Upload the file.
@@ -48,17 +53,23 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
         {
             // As the call is asynchronous, it is possible to do several calls in parallel.
 
+            #region Custom parameters
+
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+            var businessTypeIdBigFile = 0; // Use the desired businessType.
+            var businessTypeIdSmallFile = 0; // Use the desired businessType.
+
+            #endregion
+
             Output.WriteTittle("Executing FileSystem.SDK example: Upload two files in parallel");
 
             // Configure the files that are going to be uploaded.
-            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
-
             var bigFileName = "testFile10mb.yml";
             var bigFilePath = Path.Combine(FilesBaseDirectory, "Data", bigFileName);
             var bigFileRequest = new FileUploadRequest
             {
                 Name = "testFile10mb.yml",
-                BusinessTypeId = 0 // FILLME Use the desired businessType.
+                BusinessTypeId = businessTypeIdBigFile
             };
 
             var smallFileName = "testFile50kb.txt";
@@ -66,7 +77,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             var smallFileRequest = new FileUploadRequest
             {
                 Name = "testFile50kb.txt",
-                BusinessTypeId = 0 // FILLME Use the desired businessType.
+                BusinessTypeId = businessTypeIdSmallFile
             };
 
             // Upload the files.

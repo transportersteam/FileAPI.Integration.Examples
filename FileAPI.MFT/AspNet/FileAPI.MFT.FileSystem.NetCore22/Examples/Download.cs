@@ -17,9 +17,13 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
         [Fact]
         public async Task DownloadOneFile()
         {
-            Output.WriteTittle("Executing FileSystem.SDK example: Download one file");
+            #region Custom parameters
 
-            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+
+            #endregion
+
+            Output.WriteTittle("Executing FileSystem.SDK example: Download one file");
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
@@ -38,9 +42,13 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
         {
             // As the call is asynchronous, it is possible to do several calls in parallel.
 
-            Output.WriteTittle("Executing FileSystem.SDK example: Download two files in parallel");
+            #region Custom parameters
 
-            var tenantId = "MyTenantId"; // FILLME Only necessary for multi-tenant token.
+            var tenantId = "MyTenantId"; // Only necessary for multi-tenant token.
+
+            #endregion
+
+            Output.WriteTittle("Executing FileSystem.SDK example: Download two files in parallel");
 
             // First you need a valid file ID so you can download it.
             // If you already know the ID of an uploaded file, you can use, instead, that ID.
