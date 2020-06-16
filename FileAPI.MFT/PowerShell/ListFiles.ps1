@@ -25,7 +25,7 @@ foreach($fileInfo in $result.Data)
 	"FileName"=$fileInfo.FileName; 
 	"FileSize"=$fileInfo.FileSize;
 	"TenantId"=$fileInfo.TenantId;
-	"businessType"=[ordered]@{
+	"BusinessType"=[ordered]@{
 		"Id"=$fileInfo.BusinessType.Id; 
 		"Name"=$fileInfo.BusinessType.Name};
 	"PublisherId"=$fileInfo.PublisherId;
