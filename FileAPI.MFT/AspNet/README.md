@@ -37,6 +37,8 @@ Please, refer the to [Microsoft documentation](https://docs.microsoft.com/en-us/
 
 The examples are populated with some logs. They are stored internally and shown after an example is executed. To see these logs go the **Test Explorer**, choose the executed test and press **Open additional output for this result**. You can get more information [here](https://xunit.net/docs/capturing-output).
 
+**WARNING: Take on consideration that the tests are running through real environments. This mean that they will affect the data that is in these environments. Remember you can choose the environment in the config.json.**
+
 ## Authors
 
 **Visma - Transporters Team**
