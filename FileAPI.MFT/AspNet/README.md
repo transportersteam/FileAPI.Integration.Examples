@@ -10,18 +10,25 @@ Inside the folder there is a solution called **FileAPI.MFT**. This solution cont
   - **FileAPI.MFT.FileSystem.NetCore22**. This project provides examples of how to integrate **FileSystem SDK** using **.Net Core 2.2**.
   - **FileAPI.MFT.Streaming.NetCore22**. This projects provides examples of how to integrate **Streaming SDK** using **.Net Core 2.2**.
 
-The examples are in the **Examples** folder and they are created as tests methods. So for trying them you have to run them.
+The examples are in the **Examples** folder and they are created as tests methods. Run them if you want to see the SDK working.
 
-Most of the examples require custom parameters (like the tenant ID you want to use, the business type you want to upload the files to...). This required data is commented in the examples with a **"FILL ME"**. Fill the required data before running the examples.
+Most of the examples require custom parameters (like the tenant ID you want to use, the business type you want to upload the files to...).
 
-**NOTE: If you are having errors when excuting the examples. Most likely will be caused because the custom parameters is not correctly provided.**
+This required data is in three places:
+  - **config.json**: Contains some parameters that the SDK needs.
+  - **Startup.cs**: When injecting the SDK, the second parameter needs to be provided.
+  - **In each test**: Required data is at the beginning of each test, inside a **#region** called **Custom parameters**.
+
+Please, fill the required data before running the examples.
+
+**NOTE: If you are having errors when excuting the examples. Most likely will be caused because the custom parameters are not correctly provided.**
 
 ## Projects structure
 
 Both projects has the same structure:
   - **Example** folder contains all the examples as test methods.
   - **Files** folder works as an internal file system. It also provides some sample files.
-  - **config.json** contains some parameters that is going to be repeated through the examples.
+  - **config.json** contains some parameters that the SDK needs.
   - **Startup.cs** initialize the examples and injects the SDK.
 
 ## Running Examples

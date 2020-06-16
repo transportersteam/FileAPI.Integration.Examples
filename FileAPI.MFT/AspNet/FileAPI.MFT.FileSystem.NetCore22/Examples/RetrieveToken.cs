@@ -20,7 +20,7 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             // This is an example of how to retrieve the authentication token from Ping.
             // This is out of the scope of the File API, but as the File API needs a token to recognize the user, this example was created.
             // To get more information about how to retrieve the token, please refer to the Ping documentation.
-            // ToDo Add ping documentation.
+            // https://community.raet.com/developers/w/iam-api-users/1371/getting-started
 
             #region Custom parameters
 
