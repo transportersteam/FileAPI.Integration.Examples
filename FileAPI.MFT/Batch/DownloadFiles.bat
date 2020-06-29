@@ -16,12 +16,16 @@ REM #26bb73c3-4135-4760-9e82-2d7c448caa24#payments.xml^
 REM #d4176e36-ea64-4edf-b942-de5d9314a582#employees.yml
 set files=#fileId#fileName
 
-REM Configure credentials.
+REM Ask for the rest of configurations.
 
-set clientId=MyClientId
-set clientSecret=MyClientSecret
-set tenantId=MyTenantId
-set basePath=DownloadPath
+echo Enter your credentials.
+set /p "clientId=Cliend ID: "
+set /p "clientSecret=Client secret: "
+set /p "tenantId=Tenant ID: "
+
+echo.
+echo Enter the path where you want to download the files:
+set /p "basePath="
 
 if not "%basePath:~-1%" == "/" if not "%basePath:~-1%" == "\" set basePath=%basePath%\
 
