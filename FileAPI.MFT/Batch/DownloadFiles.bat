@@ -1,18 +1,31 @@
 @echo off & setlocal
+setlocal enableDelayedExpansion
 
-REM Configuration
+REM Configure the files that are going to be downloaded.
+
+REM The files are set with the next schema:
+REM #FirstFileId#FirstFileName#SecondFileId#SecondFileName
+REM e.g.
+REM #26bb73c3-4135-4760-9e82-2d7c448caa24#payments.xml#d4176e36-ea64-4edf-b942-de5d9314a582#employees.yml
+REM
+REM To separe the files in different lines (for visual purpose only), write the character ^ at the end of all the lines but the last one.
+REM #FirstFileId#FirstFileName^
+REM #SecondFileId#SecondFileName
+REM e.g.
+REM #26bb73c3-4135-4760-9e82-2d7c448caa24#payments.xml^
+REM #d4176e36-ea64-4edf-b942-de5d9314a582#employees.yml
+set files=#fileId#fileName
+
+REM Configure credentials.
 
 set clientId=MyClientId
 set clientSecret=MyClientSecret
 set tenantId=MyTenantId
+set basePath=DownloadPath
 
-set fileId1=5297c2a5-690e-4b07-ab3e-86c19d3ce7dd
-set name1="tinny file.txt"
+if not "%basePath:~-1%" == "/" if not "%basePath:~-1%" == "\" set basePath=%basePath%\
 
-set fileId2=5297c2a5-690e-4b07-ab3e-86c19d3ce7dd
-set name2="small file.txt"
-
-REM Retrieve token
+REM Retrieve authentication token
 
 for /f %%i in (' ^
 curl -s -X POST https://api.raet.com/authentication/token ^
@@ -26,14 +39,23 @@ set "token=%afterTokenKey:"=" & set "afterToken=%"
 
 REM Download the files
 
-curl https://api.raet.com/mft/v1.0/files/%fileId1%?role=subscriber ^
---header "x-raet-tenant-id: %tenantId%" ^
---header "Authorization: Bearer %token%" ^
--H "Accept: application/octet-stream" ^
---output %name1%
+:download_file
 
-curl https://api.raet.com/mft/v1.0/files/%fileId2%?role=subscriber ^
+for /F "tokens=1,2 delims=#" %%G in ("%files%") do (set "fileId=%%G" & set "fileName=%%H")
+set filePath=%basePath%%fileName%
+
+echo.
+echo Downloading file ^<%fileId%^> to %filePath%
+
+curl https://api.raet.com/mft/v1.0/files/%fileId%?role=subscriber ^
 --header "x-raet-tenant-id: %tenantId%" ^
 --header "Authorization: Bearer %token%" ^
 -H "Accept: application/octet-stream" ^
---output %name2%
+--output "%filePath%"
+
+echo File was downloaded.
+
+REM Remove the downloaded file from the list.
+set "files=!files:#%fileId%#%fileName%=!"
+
+if defined files goto :download_file
