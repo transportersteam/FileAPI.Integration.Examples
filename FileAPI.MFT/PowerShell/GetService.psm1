@@ -6,12 +6,19 @@ function GetFileApiFileSystemService{
 		
 		[parameter(Mandatory=$true)]
 		$token
+
+		[parameter(Mandatory=$false)]
+		$clientTimeout
     )
  
     ## Configuration
 	Write-Host "Creating configuration..." -ForegroundColor Green
 	$options = new-object Ftaas.Sdk.Factory.ServiceWrapperOptions
 	$options.MftServiceBaseAddress = $mftServiceBaseAddress
+	if ($clientTimeout) { 
+		$options.ClientTimeout = $clientTimeout
+	}
+	
 	Write-Host "MFT service base address: " -ForegroundColor Yellow -NoNewline 
 	Write-Host $options.MftServiceBaseAddress -ForegroundColor White
 	Write-Host ""
