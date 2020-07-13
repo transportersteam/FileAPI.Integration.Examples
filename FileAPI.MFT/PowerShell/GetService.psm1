@@ -5,7 +5,7 @@ function GetFileApiFileSystemService{
 		$mftServiceBaseAddress,
 		
 		[parameter(Mandatory=$true)]
-		$token
+		$token,
 
 		[parameter(Mandatory=$false)]
 		$clientTimeout
@@ -18,7 +18,7 @@ function GetFileApiFileSystemService{
 	if ($clientTimeout) { 
 		$options.ClientTimeout = $clientTimeout
 	}
-	
+
 	Write-Host "MFT service base address: " -ForegroundColor Yellow -NoNewline 
 	Write-Host $options.MftServiceBaseAddress -ForegroundColor White
 	Write-Host ""
