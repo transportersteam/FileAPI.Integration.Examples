@@ -39,6 +39,11 @@ namespace FileAPI.MFT.FileSystem.NetCore22
                     // The default value is also the recommended one, only to be decreased if you are having connection issues.
                     options.ChunkMaxBytesSize = Config.GetValue<int>("chunk_max_bytes_size");
 
+                    // Optional value. With a higher timeout it is possible to operate larger files without a Timeout exception
+                    // This value is valid for all the calls to this service.
+                    // If a particular call needs a shorter Timeout, the cancellation token of that particular call can be used
+                    options.ClientTimeout = 600;
+
                     // Optional value. Number of parallel requests to File API.
                     // If not set, the default value is the maximum 6.The minimum is 1.
                     // It's recommended to set this value according to your CPU capabilities.

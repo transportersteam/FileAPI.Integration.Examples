@@ -35,14 +35,9 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             // Configure the file that is going to be uploaded.
             var fileName = "testFile50kb.txt";
             var filePath = Path.Combine(FilesBaseDirectory, "Data", fileName);
-            var request = new FileUploadRequest
-            {
-                Name = "testFile50kb.txt",
-                BusinessTypeId = businessTypeId
-            };
 
             // Upload the file.
-            var uploadResult = await FileSystem.UploadFileAsync(request, filePath, tenantId: tenantId);
+            var uploadResult = await FileSystem.UploadFileAsync(businessTypeId, filePath, tenantId: tenantId);
 
             Assert.IsType<FileUploadInfo>(uploadResult);
             Assert.Equal(fileName, uploadResult.Name);
@@ -71,25 +66,15 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             // Configure the files that are going to be uploaded.
             var bigFileName = "testFile10mb.yml";
             var bigFilePath = Path.Combine(FilesBaseDirectory, "Data", bigFileName);
-            var bigFileRequest = new FileUploadRequest
-            {
-                Name = "testFile10mb.yml",
-                BusinessTypeId = businessTypeIdBigFile
-            };
 
             var smallFileName = "testFile50kb.txt";
             var smallFilePath = Path.Combine(FilesBaseDirectory, "Data", smallFileName);
-            var smallFileRequest = new FileUploadRequest
-            {
-                Name = "testFile50kb.txt",
-                BusinessTypeId = businessTypeIdSmallFile
-            };
 
             // Upload the files.
             var uploadTasks = new List<Task<FileUploadInfo>>
             {
-                FileSystem.UploadFileAsync(bigFileRequest, bigFilePath, tenantId: tenantId),
-                FileSystem.UploadFileAsync(smallFileRequest, smallFilePath, tenantId: tenantId)
+                FileSystem.UploadFileAsync(businessTypeIdBigFile, bigFilePath, tenantId: tenantId),
+                FileSystem.UploadFileAsync(businessTypeIdSmallFile, smallFilePath, tenantId: tenantId)
             };
 
             // Wait for the files to be uploaded and print the results.
