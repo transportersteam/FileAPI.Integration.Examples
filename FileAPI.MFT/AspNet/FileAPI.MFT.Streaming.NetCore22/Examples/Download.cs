@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -37,7 +38,11 @@ namespace FileAPI.MFT.Streaming.NetCore22.Examples
 
             using (var ms = new MemoryStream())
             {
-                await Streaming.DownloadFileAsync(fileId, ms, tenantId: tenantId);
+                //optional token source to cancel operations after some milliseconds:
+                var tokenSource = new CancellationTokenSource();
+                tokenSource.CancelAfter(30000);
+
+                await Streaming.DownloadFileAsync(fileId, ms, tenantId: tenantId, tokenSource.Token);
 
                 Assert.Equal(fileInfo.FileSize, ms.Length);
                 _output.WriteLine($"File <{fileId}>. Content downloaded.");

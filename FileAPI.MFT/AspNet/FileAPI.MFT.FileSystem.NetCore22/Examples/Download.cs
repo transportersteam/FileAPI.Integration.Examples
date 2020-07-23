@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -35,7 +36,12 @@ namespace FileAPI.MFT.FileSystem.NetCore22.Examples
             var fileId = GetRandomUploadedFile(tenantId).FileId.ToString();
 
             var downloadPath = Path.Combine(FilesBaseDirectory, "downloadedFile.txt");
-            await FileSystem.DownloadFileAsync(fileId, downloadPath, tenantId: tenantId);
+
+            //optional token source to cancel operations after some milliseconds:
+            var tokenSource = new CancellationTokenSource();
+            tokenSource.CancelAfter(30000);
+
+            await FileSystem.DownloadFileAsync(fileId, downloadPath, tenantId: tenantId, tokenSource.Token);
 
             Assert.True(File.Exists(downloadPath), $"File was not downloaded correctly to {downloadPath}");
 

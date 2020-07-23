@@ -26,8 +26,9 @@ Write-Host "File path: " -ForegroundColor Yellow -NoNewline
 Write-Host $longFilePath -ForegroundColor White
 Write-Host "Tenant id (optional): " -ForegroundColor Yellow -NoNewline 
 Write-Host $tenantId -ForegroundColor White
-$cancellationToken = new-object System.Threading.CancellationToken
-$result = $fileSystemService.DownloadFileAsync($longFileId,$longFilePath,$tenantId,$cancellationToken).GetAwaiter().GetResult()
+$tokenSource = new-object System.Threading.CancellationTokenSource
+$tokenSource.CancelAfter(30000)  ## Expressed in milliseconds
+$result = $fileSystemService.DownloadFileAsync($longFileId, $longFilePath, $tenantId, $tokenSource.Token).GetAwaiter().GetResult()
 
 ## Download normal file with a shorter timeout
 Write-Host "Download file..." -ForegroundColor Green
@@ -40,4 +41,4 @@ Write-Host $tenantId -ForegroundColor White
 ## The cancelation token source is used to specify a shorter timeout
 $tokenSource = new-object System.Threading.CancellationTokenSource
 $tokenSource.CancelAfter(30000)  ## Expressed in milliseconds
-$result = $fileSystemService.DownloadFileAsync($fileId,$filePath,$tenantId,$tokenSource.Token).GetAwaiter().GetResult()
+$result = $fileSystemService.DownloadFileAsync($fileId, $filePath, $tenantId, $tokenSource.Token).GetAwaiter().GetResult()
