@@ -1,6 +1,7 @@
 # Changelog 
 Date | Version Changes 
 --- | --- 
+2020-08-25| v0.19.0         Fixed incomplete upload of big files when the connection is too slow.  #vrftr-1004: fix issue with HttpClient timeouts throwing TaskCancelledException
 2020-07-29| v0.18.0         Added underlying http requests retrying
 2020-07-21| v0.17.0         Remove ClientBufferSize, support for files longer than 2Gb  Remove ClientBufferSize, support for files longer than 2Gb
 2020-07-21| v0.16.0         Solved a bug where big files (8 MB) might be uploaded corrupted.
