@@ -1,6 +1,7 @@
 # Changelog 
 Date | Version Changes 
 --- | --- 
+2020-10-10| v0.22.0         Update SonarQube Service Connection
 2020-09-17| v0.21.0         Fixed nuget packages publishing issues
 2020-09-09| v0.20.0         QA improvements
 2020-08-25| v0.19.0         Fixed incomplete upload of big files when the connection is too slow
