@@ -1,6 +1,7 @@
 # Changelog 
 Date | Version Changes 
 --- | --- 
+2020-11-16| v0.23.0         Added pipeline retention for releases  Retain pipeline data when release reach REL stage.  - vrftr-1420
 2020-10-10| v0.22.0         Update SonarQube Service Connection
 2020-09-17| v0.21.0         Fixed nuget packages publishing issues
 2020-09-09| v0.20.0         QA improvements
