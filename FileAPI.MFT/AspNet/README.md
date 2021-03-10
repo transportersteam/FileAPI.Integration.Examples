@@ -2,10 +2,6 @@
 
 **AspNet** folder includes a collection of examples that show how to integrate the **File API SDKs** with **.Net Core**.
 
-## Prerequisites
-
-You will need a GitHub account in order to get the Ftaas.Sdk packages.
-
 ## Getting Started 
 
 Download **AspNet** folder.
@@ -13,8 +9,6 @@ Download **AspNet** folder.
 Inside the folder there is a solution called **FileAPI.MFT**. This solution contains two projects:
   - **FileAPI.MFT.FileSystem.NetCore22**. This project provides examples of how to integrate **FileSystem SDK** using **.Net Core 2.2**.
   - **FileAPI.MFT.Streaming.NetCore22**. This projects provides examples of how to integrate **Streaming SDK** using **.Net Core 2.2**.
-
-Configure nuget sources to retrieve the packages from transporters GitHub repository: [Set GitHub as nuget source](https://docs.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-dotnet-cli-for-use-with-github-packages).
 
 The examples are in the **Examples** folder and they are created as tests methods. Run them if you want to see the SDK working.
 
@@ -48,4 +42,3 @@ The examples are populated with some logs. They are stored internally and shown 
 ## Authors
 
 **Visma - Transporters Team**
-

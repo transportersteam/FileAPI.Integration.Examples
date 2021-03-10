@@ -1,23 +1,25 @@
-MftWebApi SDKs
+
+File API SDKs
 =========
 
 [![Build Status](https://dev.azure.com/raet/RaetOnline/_apis/build/status/Team%20Transporters/FTaaS/Ftaas.Sdk?branchName=master)](https://dev.azure.com/raet/RaetOnline/_build/latest?definitionId=4631&branchName=master)
 
-Library that allows to send and receive files to MFT API.
-It comes in two different flavors: [Ftaas.Sdk.FileSystem](#ftaassdkfilesystem) and [Ftaas.Sdk.Streaming](#ftaassdkstreaming). The first one allows 
-to send and receive files directly on your file system, while the second is more configurable, as the source of files are streams.
+Library that allows to send and receive files to the File API.
+It comes in two different flavors: [VismaRaet.FileApi.Sdk.FileSystem](#vismaraet.fileapi.sdk.filesystem) and [VismaRaet.FileApi.Sdk.Streaming](#vismaraet.fileapi.sdk.streaming). The first one allows 
+to send and receive files directly on your file system, while the second is more configurable, as the source of the files are streams.
 
-# Mft.Sdk.FileSystem #
+# VismaRaet.FileApi.Sdk.FileSystem #
 
-Integrate with MFT API with file system sources, sending and downloading files from and into directories.
+Integrate with File API with file system sources, sending and downloading files from and into directories.
+
 
 ## Getting started ##
 
 1. Install the file system Nuget package into your ASP.NET Core application.
 
     ```
-    Package Manager : Install-Package Ftaas.Sdk.FileSystem -Version 0.4.0
-    CLI : dotnet add package Ftaas.Sdk.FileSystem --version 0.4.0
+    Package Manager : Install-Package VismaRaet.FileApi.Sdk.FileSystem -Version 1.0.0
+    CLI : dotnet add package VismaRaet.FileApi.Sdk.FileSystem --version 1.0.0
     ```
 
 2. In the `ConfigureServices` method of `Startup.cs`, register the FileSystem integrator.
@@ -32,7 +34,7 @@ Integrate with MFT API with file system sources, sending and downloading files f
                             {
                                 options.MftServiceBaseAddress = mftService;
                                 options.ChunkMaxBytesSize = Configuration.GetValue<int>("chunk_max_bytes_size");
-								options.ClientTimeout = Configuration.GetValue<int>("client_timeout");
+                                options.ClientTimeout = Configuration.GetValue<int>("client_timeout");
                                 options.ConcurrentConnectionsCount = Configuration.GetValue<byte>("concurrent_connections");
                             },
                             async (serviceProvider) =>
@@ -49,14 +51,14 @@ Integrate with MFT API with file system sources, sending and downloading files f
             this IServiceCollection services,
             Action<ServiceConfigurationOptions> optionsConfiguration,
             Func<IServiceProvider, Task<string>> bearerTokenFactory)`\
-    `optionConfiguration`: MFT API base address, maximum chunk size (0 - 4194304 bytes) and number of concurrent connections (1 - 6).\
+    `optionConfiguration`: File API base address, maximum chunk size (0 - 4194304 bytes) and number of concurrent connections (1 - 6).\
     `bearerTokenFactory`: Function that retrieves an authorization token.
 
 ## Usage ##
 
 ### Upload ###
 
-`UploadFileAsync` uploads a file and returns the metadata of the file created on MFT: The Id can be used to download the file by the subscribers.
+`UploadFileAsync` uploads a file and returns the metadata of the file created on the File API: The Id can be used to download the file by the subscribers.
 
 _NOTE: If the file size is greater than the maximum chunk size configured, it will be uploaded by chunks._
 
@@ -82,7 +84,7 @@ _NOTE: If the file already exists, it will be replaced with the downloaded one._
 
 `GetAvailableFilesAsync` retrieves a list of metadatas of the available files.
 
-_NOTE: Files that have already been downloaded won't be listed._
+_NOTE: Files that have already been downloaded won't be listed unless it's specified by the filters._
 
 #### Task<PaginatedItems<FileInfo>> GetAvailableFilesAsync(long businessTypeId, Pagination pagination, string tenantId, CancellationToken cancellationToken) ####
 `businessTypeId`: (optional) if specified, only the files of this bussiness type will be listed.\
@@ -90,17 +92,17 @@ _NOTE: Files that have already been downloaded won't be listed._
 `tenantId`: (optional) tenantId.\
 `cancellationToken`: (optional) the CancellationToken that the list task will observe.
 
-# Mft.Sdk.Streaming #
+# VismaRaet.FileApi.Sdk.Streaming #
 
-Integrate with MFT API with stream sources.
+Integrate with the File API with stream sources.
 
 ## Getting started ##
 
 1. Install the streams Nuget package into your ASP.NET Core application.
 
     ```
-    Package Manager : Install-Package Ftaas.Sdk.Streaming -Version 0.4.0
-    CLI : dotnet add package Ftaas.Sdk.Streaming --version 0.4.0
+    Package Manager : Install-Package VismaRaet.FileApi.Sdk.Streaming -Version 1.0.0
+    CLI : dotnet add package VismaRaet.FileApi.Sdk.Streaming --version 1.0.0
     ```
 
 2. In the `ConfigureServices` method of `Startup.cs`, register the Streaming integrator.
@@ -131,14 +133,14 @@ Integrate with MFT API with stream sources.
             this IServiceCollection services,
             Action<ServiceConfigurationOptions> optionsConfiguration,
             Func<IServiceProvider, Task<string>> bearerTokenFactory)`\
-    `optionConfiguration`: MFT API base address, maximum chunk size (0 - 4194304 bytes) and number of concurrent connections (1 - 6).\
+    `optionConfiguration`: File API base address, maximum chunk size (0 - 4194304 bytes) and number of concurrent connections (1 - 6).\
     `bearerTokenFactory`: Function that retrieves an authorization token.
 
 ## Usage ##
 
 ### Upload ###
 
-`UploadFileAsync` uploads a file and returns the metadata of the file created on MFT: The Id can be used to download the file by the subscribers.
+`UploadFileAsync` uploads a file and returns the metadata of the file created on the File API: The Id can be used to download the file by the subscribers.
 
 _NOTE: If the file size is greater than the maximum chunk size configured, it will be uploaded by chunks._
 
@@ -162,7 +164,7 @@ _NOTE: If the file size is greater than the maximum chunk size configured, it wi
 
 `GetAvailableFilesAsync` retrieves a list of metadatas of the available files.
 
-_NOTE: Files that have already been downloaded won't be listed._
+_NOTE: Files that have already been downloaded won't be listed unless it's specified by the filters._
 
 #### Task<PaginatedItems<FileInfo>> GetAvailableFilesAsync( long businessTypeId, Pagination pagination, string tenantId, CancellationToken cancellationToken) ####
 `businessTypeId`: (optional) if specified, only the files of this bussiness type will be listed.\
