@@ -1,7 +1,10 @@
 # Changelog 
 Date | Version Changes 
 --- | --- 
-2020-11-16| v0.23.0         Added pipeline retention for releases  Retain pipeline data when release reach REL stage.  - vrftr-1420
+2021-03-11| v1.1.0          Improve pipeline to publish changelog to the example repository  After a change in the pipeline, the SDK changelog was no longer publishing to the [example repository](https://github.com/transportersteam/FileAPI.Integration.Examples/blob/master/FileAPI.Sdk/docs/Changelog.md). The change was rolled back.
+2021-03-04| v1.0.0          Package is now deployed to Nuget
+2021-02-18| v0.24.0         Security changes related to Dependency Confusion Vulnerability are implemented
+2020-11-16| v0.23.0         Added pipeline retention for releases  Retain pipeline data when release reach REL stage
 2020-10-10| v0.22.0         Update SonarQube Service Connection
 2020-09-17| v0.21.0         Fixed nuget packages publishing issues
 2020-09-09| v0.20.0         QA improvements
