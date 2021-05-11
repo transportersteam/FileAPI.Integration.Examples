@@ -1,7 +1,8 @@
 # Changelog 
 Date | Version Changes 
 --- | --- 
-2021-03-11| v1.1.0          Improve pipeline to publish changelog to the example repository  After a change in the pipeline, the SDK changelog was no longer publishing to the [example repository](https://github.com/transportersteam/FileAPI.Integration.Examples/blob/master/FileAPI.Sdk/docs/Changelog.md). The change was rolled back.
+2021-05-11| v1.2.0          Run Polaris only on schedule  The pipeline was executed every time a commit was pushed. Not it only runs on schedule  - vrftr-2518
+2021-03-11| v1.1.0          Improve pipeline to publish changelog to the example repository
 2021-03-04| v1.0.0          Package is now deployed to Nuget
 2021-02-18| v0.24.0         Security changes related to Dependency Confusion Vulnerability are implemented
 2020-11-16| v0.23.0         Added pipeline retention for releases  Retain pipeline data when release reach REL stage
