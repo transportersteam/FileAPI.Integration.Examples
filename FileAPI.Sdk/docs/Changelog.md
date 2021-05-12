@@ -1,6 +1,7 @@
 # Changelog 
 Date | Version Changes 
 --- | --- 
+2021-05-12| v1.4.0          [Automated by CI/CD] Updated Changelog
 2021-05-12| v1.3.0          Fix version issue in nuget.org  Fix version issue in nuget.org
 2021-05-11| v1.2.0          Run Polaris only on schedule  The pipeline was executed every time a commit was pushed. Not it only runs on schedule  - vrftr-2518
 2021-03-11| v1.1.0          Improve pipeline to publish changelog to the example repository
