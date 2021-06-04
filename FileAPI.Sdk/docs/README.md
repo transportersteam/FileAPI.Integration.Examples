@@ -90,6 +90,15 @@ _NOTE: Files that have already been downloaded won't be listed._
 `tenantId`: (optional) tenantId.\
 `cancellationToken`: (optional) the CancellationToken that the list task will observe.
 
+### Has Subscription ###
+
+`HasSubscriptionAsync` under development, ALWAYS returns true. In the furure, it will return true if a business type has subscribers for the specified tenant and false otherwise.
+
+#### Task<bool> HasSubscriptionAsync(long businessTypeId, string tenantId, CancellationToken cancellationToken) ####
+`businessTypeId`: business type.\
+`tenantId`: (optional) tenantId.\
+`cancellationToken`: (optional) the CancellationToken that the task will observe.
+
 # Mft.Sdk.Streaming #
 
 Integrate with MFT API with stream sources.
@@ -169,3 +178,12 @@ _NOTE: Files that have already been downloaded won't be listed._
 `pagination`: (optional) if specified, the list will have the specified items size and will be the index page. If not, the first twenty files metadata will be retrieved.\
 `tenantId`: (optional) tenantId.\
 `cancellationToken`: (optional) the CancellationToken that the list task will observe.
+
+### Has Subscription ###
+
+`HasSubscriptionAsync` under development, ALWAYS returns true. In the furure, it will return true if a business type has subscribers for the specified tenant and false otherwise.
+
+#### Task<bool> HasSubscriptionAsync(long businessTypeId, string tenantId, CancellationToken cancellationToken) ####
+`businessTypeId`: business type.\
+`tenantId`: (optional) tenantId.\
+`cancellationToken`: (optional) the CancellationToken that the task will observe.
