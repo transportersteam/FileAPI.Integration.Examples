@@ -1,6 +1,7 @@
 # Changelog 
 Date | Version Changes 
 --- | --- 
+2021-06-07| v1.7.0          Added documentation for has subscribers  Added documentation for has subscribers
 2021-06-04| v1.6.0          Fixed pipeline step to upload libraries to github
 2021-06-04| v1.5.0          Created nonfunctional method to check if a business type has subscription for a specific tenant  A new method: HasSubscription have been added. It is still under development and always returns true. When implemented, it will return if a business type has subscriptions for the specified tenantId.
 2021-05-12| v1.4.0          Minor pipeline improvements
